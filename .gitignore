@@ -1,0 +1,25 @@
+# .gitignore
+# Project files and directories
+/static/
+/media/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Translations
+*.pot
+
+# Django stuff:
+*.log
+
+db.*
+dump.json
