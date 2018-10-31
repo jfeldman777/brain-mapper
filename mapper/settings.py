@@ -138,3 +138,4 @@ try:
     DATABASES['default'].update(db_from_env)
 except:
     pass
+ADMIN_MEDIA_PREFIX = MEDIA_URL + 'admin/'
