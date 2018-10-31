@@ -25,8 +25,10 @@ SECRET_KEY = '39219akhqwl@4+poil=3tbx)0vpc$u!ollpu5!wa1v&qj$r#a8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['127.0.0.1',
+                'brain-mapper.herokuapp.com',
+                'localhost',
+]
 
 # Application definition
 
