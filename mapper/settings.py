@@ -60,6 +60,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['templates',
+                 'templates/back',
+                 'templates/registration',
                 ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -137,7 +139,7 @@ try:
     db_from_env = dj_database_url.config()
     DATABASES['default'].update(db_from_env)
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-    MEDIAFILES_LOCATION = 'media'    
+    MEDIAFILES_LOCATION = 'media'
 except:
     pass
 ADMIN_MEDIA_PREFIX = MEDIA_URL + 'admin/'
