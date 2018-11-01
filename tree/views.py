@@ -18,4 +18,10 @@ def i_tea(request):
     return render(request,'i_tea.html')
 
 def i_gue(request):
-    return render(request,'i_gue.html')                       
+    return render(request,'i_gue.html')
+
+def i_tut(request):
+    return render(request,'i_tut.html')
+
+def i_dir(request):
+    return render(request,'i_dir.html')  
