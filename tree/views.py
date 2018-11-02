@@ -33,6 +33,9 @@ def i_tut(request):
 def i_dir(request):
     return render(request,'i_dir.html')
 
+def i_adm(request):
+    return render(request,'i_adm.html')    
+
 class RoleDir(forms.Form):
     role = forms.ChoiceField(
         choices = (
@@ -56,7 +59,7 @@ class RoleAdm(forms.Form):
             ('D','Директор'),
             ('T','Тьютор'),
             ('H','Учитель'),
-            ('C','Спец по содержанию')
+            ('C','Спец по содержанию'),
             ('P','Родитель'),
             ('S','Ученик'),
         )
