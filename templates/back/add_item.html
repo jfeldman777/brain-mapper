@@ -8,11 +8,14 @@
 <form method="post" action=''>
   {% csrf_token %}
   {{ form }}
+  <br>
 {% if user.is_superuser %}
   {{ form2 }}
 {% endif %}
   <input type="submit" value="Submit" />
 </form>
-{% trans 'old node' %}:{{old_node}}:{% trans 'location' %}:{{location}}
+{% trans 'old node' %}:{{old_node}}
+<br>
+{% trans 'location' %}:{{location}}
 {% endif %}
 {% endblock %}
