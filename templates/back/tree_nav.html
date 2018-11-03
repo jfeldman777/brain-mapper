@@ -51,8 +51,10 @@
 
 <i class='far fa-edit'></i>
 
-
           </a>
+{% if node.has_exam %}
+<i class='far fa-question-circle'></i>
+{% endif %}
           {% endif %}
           <ul>
             {% for t in children %}

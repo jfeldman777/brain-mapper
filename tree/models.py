@@ -52,5 +52,7 @@ class MagicNode(AL_Node):
 
         )
 
+    has_exam = models.BooleanField(default = False)
+
     def __str__(self):
         return self.desc
