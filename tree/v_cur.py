@@ -12,7 +12,6 @@ def tree_nav(id):
             node = get(id)
         except:
             node = MagicNode.get_first_root_node()
-            print(node)
 
         if node.is_root():
             node = node.get_first_child()
