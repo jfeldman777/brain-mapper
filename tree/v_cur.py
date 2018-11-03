@@ -5,6 +5,16 @@ from django.forms import ModelForm
 def msg(request,msg):
     return render(request, 'msg.html', {'msg': msg})
 
+def subtree(request,id):
+    node = MagicNode.get_first_root_node()
+    if id!=0:
+        node = MagicNode.objects.get(id=id)
+    annotated_list = MagicNode.get_annotated_list(parent=node)
+    return render(request,'tree.html',
+                    {'annotated_list':annotated_list,
+                     })
+
+
 def tree(id):
     children = []
     siblings = []

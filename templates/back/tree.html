@@ -9,24 +9,23 @@
     {% else %}
         </li><li>
     {% endif %}
-<a href="/topic_tree/{{item.id}}/">
+<a href="/tree_nav/{{item.id}}/">
     {{ item }}
 </a>
     {% if not item.is_ready %}
-    <span class="glyphicon glyphicon-cog" title="not ready yet"></span>
+
+      <i class='fas fa-cog' title="not ready yet"></i>
+
     {% endif %}
     {% if user.is_superuser or item.owner == user %}
     <a href="/add_item/{{item.id}}/1/" title='add before' target="c1">
-      <span class="glyphicon glyphicon-arrow-up">
-      </span>
+<i class='fas fa-arrow-up'></i>
     </a>
     <a href="/add_item/{{item.id}}/2/" title='add after' target="c1">
-      <span class="glyphicon glyphicon-arrow-down">
-      </span>
+<i class='fas fa-arrow-down'></i>
     </a>
     <a href="/add_item/{{item.id}}/3/" title='add child' target="c1">
-      <span class="glyphicon glyphicon-arrow-right">
-      </span>
+<i class='fas fa-arrow-right'></i>
     </a>
     {% endif %}
 
