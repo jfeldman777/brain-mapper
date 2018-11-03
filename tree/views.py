@@ -6,15 +6,15 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Profile
-from .v_cur import tree_nav
+from .v_cur import tree
 
 def index(request):
     return render(request,'index.html')
 
-def i_cur(request):
-    d = tree_nav(1)
-    print(d)
-    return render(request,'i_cur.html',d)
+def tree_nav(request,id=1):
+    d = tree(id)
+    return render(request,'tree_nav.html',d)
+
 
 def i_par(request):
     return render(request,'i_par.html')

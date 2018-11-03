@@ -1,7 +1,7 @@
 ##############################################
 from .models import MagicNode
 
-def tree_nav(id):
+def tree(id):
     children = []
     siblings = []
     parent = None

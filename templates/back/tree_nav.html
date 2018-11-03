@@ -1,11 +1,15 @@
+{% extends 'base.html' %}
 {% load i18n %}
 {% load embed_video_tags %}
+
+{% block content %}
+
 <div class="row">
   <div class="col-sm-4">
     <a href="/tree/{{node.id}}/">{% trans 'Subtree below' %}</a>
     <h2>{% trans 'Navigator' %}</h2>
     {% if parent %}
-      <a href="/topic_tree/{{parent.id}}/">
+      <a href="/tree_nav/{{parent.id}}/">
     {{ parent }}
       </a>
     <ul>
@@ -14,7 +18,7 @@
       {% for x in siblings %}
         {% if x != node %}
           <li>
-              <a href="/topic_tree/{{x.id}}/">
+              <a href="/tree_nav/{{x.id}}/">
             {{x}}
               </a>
               {% if not x.is_ready %}
@@ -53,7 +57,7 @@
           <ul>
             {% for t in children %}
               <li>
-                <a href="/topic_tree/{{t.id}}/">
+                <a href="/tree_nav/{{t.id}}/">
                 {{t}}
                 </a>
                 {% if not t.is_ready %}
@@ -96,3 +100,5 @@
 
   </div>
 </div>
+
+{% endblock %}
