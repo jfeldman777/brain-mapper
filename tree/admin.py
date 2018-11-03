@@ -20,3 +20,13 @@ class CustomUserAdmin(UserAdmin):
 
 admin.site.unregister(User)
 admin.site.register(User, CustomUserAdmin)
+
+
+from treebeard.admin import TreeAdmin
+from treebeard.forms import movenodeform_factory
+from .models import MagicNode
+
+class MagicAdmin(TreeAdmin):
+    form = movenodeform_factory(MagicNode)
+
+admin.site.register(MagicNode, MagicAdmin)

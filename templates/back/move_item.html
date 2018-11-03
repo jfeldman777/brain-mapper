@@ -1,0 +1,16 @@
+{% extends 'base2.html' %}
+{% load i18n %}
+{% block content %}
+
+{% if user.is_superuser or node.owner == user %}
+<h2>
+{% trans 'Move item' %}</h2>
+<form method="post" action=''>
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" value="Submit" />
+</form>
+{% else %}
+Who are you, stranger? No trespassing.
+{% endif %}
+{% endblock %}

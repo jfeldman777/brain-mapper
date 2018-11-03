@@ -4,16 +4,17 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from django.contrib.auth.forms import UserCreationForm
-from django.urls import reverse_lazy
-from django.views import generic
 from django.contrib.auth.models import User
 from .models import Profile
+from .v_cur import tree_nav
 
 def index(request):
     return render(request,'index.html')
 
 def i_cur(request):
-    return render(request,'i_cur.html')
+    d = tree_nav(1)
+    print(d)
+    return render(request,'i_cur.html',d)
 
 def i_par(request):
     return render(request,'i_par.html')
@@ -34,7 +35,7 @@ def i_dir(request):
     return render(request,'i_dir.html')
 
 def i_adm(request):
-    return render(request,'i_adm.html')    
+    return render(request,'i_adm.html')
 
 class RoleDir(forms.Form):
     role = forms.ChoiceField(

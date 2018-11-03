@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h3>{% trans 'Subtree' %}</h3>
+{% for item, info in annotated_list %}
+    {% if info.open %}
+        <ul><li>
+    {% else %}
+        </li><li>
+    {% endif %}
+<a href="/topic_tree/{{item.id}}/">
+    {{ item }}
+</a>
+    {% if not item.is_ready %}
+    <span class="glyphicon glyphicon-cog" title="not ready yet"></span>
+    {% endif %}
+    {% if user.is_superuser or item.owner == user %}
+    <a href="/add_item/{{item.id}}/1/" title='add before' target="c1">
+      <span class="glyphicon glyphicon-arrow-up">
+      </span>
+    </a>
+    <a href="/add_item/{{item.id}}/2/" title='add after' target="c1">
+      <span class="glyphicon glyphicon-arrow-down">
+      </span>
+    </a>
+    <a href="/add_item/{{item.id}}/3/" title='add child' target="c1">
+      <span class="glyphicon glyphicon-arrow-right">
+      </span>
+    </a>
+    {% endif %}
+
+    {% for close in info.close %}
+        </li></ul>
+    {% endfor %}
+{% endfor %}
+{% endblock %}

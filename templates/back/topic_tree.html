@@ -1,0 +1,92 @@
+{% load i18n %}
+{% load embed_video_tags %}
+
+<div class="row">
+  <div class="col-sm-4">
+    <a href="/tree/{{node.id}}/">{% trans 'Subtree below' %}</a>
+    <h2>{% trans 'Navigator' %}</h2>
+    {% if parent %}
+      <a href="/topic_tree/{{parent.id}}/">
+    {{ parent }}
+      </a>
+    <ul>
+{% endif %}
+{% if node %}
+      {% for x in siblings %}
+        {% if x != node %}
+          <li>
+              <a href="/topic_tree/{{x.id}}/">
+            {{x}}
+              </a>
+              {% if not x.is_ready %}
+              <span class="glyphicon glyphicon-cog" title="not ready yet"></span>
+              {% endif %}
+          </li>
+
+        {% else %}
+        <li>
+          {{x}}
+          {% if not x.is_ready %}
+          <span class="glyphicon glyphicon-cog" title="not ready yet"></span>
+          {% endif %}
+
+          {% if user.is_superuser  or x.owner == user  %}
+          <a href="/move_item/{{x.id}}/"
+          title='move item' target="a1">
+   <span class="glyphicon glyphicon-plane"></span>
+
+          <a href="/change_figure/{{x.id}}/"
+          title='edit figure' target="a1">
+   <span class="glyphicon glyphicon-picture"></span>
+          </a>
+          <a href="/change_txt/{{x.id}}/"
+          title='edit txt' target="a1">
+   <span class="glyphicon glyphicon-pencil"></span>
+          </a>
+          {% endif %}
+          <ul>
+            {% for t in children %}
+              <li>
+                <a href="/topic_tree/{{t.id}}/">
+                {{t}}
+                </a>
+                {% if not t.is_ready %}
+                <span class="glyphicon glyphicon-cog" title="not ready yet"></span>
+                {% endif %}
+              </li>
+              {% endfor %}
+          </ul>
+        </li>
+         {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="col-sm-8">
+    <h2>{{node}} </h2>
+
+    {% if node.figure and node.figure != 'False'%}<br>
+    <img src="{{node.figure.url}}"  />
+<br>
+{% endif %}
+    {% if node.text %}
+    <p>
+    {{node.text|linebreaks }}
+  </p>
+    {% endif %}
+  <br>
+    {% if node.video %}
+{% video node.video 'medium' %}
+    {% endif %}
+
+{% if node.sites %}
+<h3>{% trans 'Sites' %}</h3>
+{% for x in node.sites %}
+<a href="{{x}}" target="2">{{x}}</a><br>
+{% endfor %}
+{% endif %}
+
+{% endif %}
+
+  </div>
+</div>
