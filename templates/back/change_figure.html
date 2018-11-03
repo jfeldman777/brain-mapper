@@ -1,4 +1,4 @@
-{% extends 'base2.html' %}
+{% extends 'base.html' %}
 {% load i18n %}
 {% block content %}
 
@@ -10,7 +10,5 @@
 {{ form.as_p }}
   <input type="submit" value="Submit" />
 </form>
-{% else %}
-Who are you, stranger? No trespassing.
 {% endif %}
 {% endblock %}

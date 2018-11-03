@@ -18,7 +18,15 @@ from django.urls import include, path
 
 from tree import views
 
-urlpatterns = [
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = []
+
+if settings.DEBUG:#в этом режиме медиафайлы берутся из статической папки MEDIA
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += [
     path('register_adm/', views.register_adm, name='register_adm'),
     path('register_dir/', views.register_dir, name='register_dir'),
     path('register_tut/', views.register_tut, name='register_tut'),

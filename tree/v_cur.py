@@ -54,3 +54,19 @@ def change_txt(request,id):
     return render(request, 'change_txt.html',
                 {'form': form, 'node':node
                 })
+
+class ChangeFigureForm(ModelForm):
+    class Meta:
+        model = MagicNode
+        fields = ['figure']
+
+def change_figure(request,id):
+    node = MagicNode.objects.get(id=id)
+    form = ChangeFigureForm(request.POST or None, request.FILES or None, instance = node)
+    if form.is_valid():
+        node = form.save()
+        return msg(request,'change request done')
+
+    return render(request, 'change_figure.html',
+            {'form': form, 'node':node
+            })
