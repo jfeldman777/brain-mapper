@@ -18,11 +18,16 @@
 </ul>
 {% if user.is_authenticated %}
 <a href="/accounts/logout/" title='выйти из системы' >
-    <button class="btn btn-default"><i class="fa fa-sign-out"> выйти из системы ({{ user }}) </i></button>
+
+<button style='font-size:24px'> выйти из системы ({{ user }}) <i class='fas fa-sign-out-alt'></i></button>
+
 </a>
 {% else %}
 <a href="/accounts/login/" title='войти в систему' >
-    <button class="btn btn-info"><i class="fa fa-sign-in"> войти в систему </i></button>
+
+
+  <button style='font-size:24px'>  Войти в систему <i class='fas fa-sign-in-alt'></i></button>
+
 </a>
 {% endif %}
 {% endblock %}
