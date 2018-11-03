@@ -1,5 +1,9 @@
-##############################################
+from django.shortcuts import render, get_object_or_404
 from .models import MagicNode
+from django.forms import ModelForm
+
+def msg(request,msg):
+    return render(request, 'msg.html', {'msg': msg})
 
 def tree(id):
     children = []
@@ -31,3 +35,22 @@ def tree(id):
              'parent':parent,
              'siblings':siblings,
              }
+
+class ChangeTxtForm(ModelForm):
+    class Meta:
+        model = MagicNode
+        fields = [
+        'desc', 'text', 'sites',
+        'sib_order', 'video',
+        'is_ready','has_exam']
+
+def change_txt(request,id):
+    node = get_object_or_404(MagicNode, id=id)
+    form = ChangeTxtForm(request.POST or None, instance=node)
+    if form.is_valid():
+        node = form.save()
+        return msg(request,'change request done')
+
+    return render(request, 'change_txt.html',
+                {'form': form, 'node':node
+                })
