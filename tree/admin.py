@@ -4,6 +4,14 @@ from django.contrib.auth.models import User
 
 from .models import Profile
 
+from .models import Quiz
+
+class QuizAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(Quiz, QuizAdmin)
+
+
 class ProfileInline(admin.StackedInline):
     model = Profile
     can_delete = False

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1>
+{% trans 'Exam' %}
+</h1>
+{% if boats %}
+
+{% for b in boats %}
+
+{% if b.link %}
+<a href="{{b.link}}" target="more2">
+{% endif %}
+<h2>
+{{b}}
+{% if user.is_superuser or node.owner == user %}
+<a href="/sea/delete/{{b.id}}/" title="delete item" target="more3"
+onclick="return confirm('delete item: r u sure?') ? true : false;"
+>
+         <span class="glyphicon glyphicon-trash"></span>
+       </a>
+       <a href="/sea/edit/{{b.id}}/" title="edit item" target="more3">
+                <span class="glyphicon glyphicon-pencil"></span>
+              </a>
+{% endif %}
+</h2>
+
+{% if b.link %}
+</a>
+{% endif %}
+
+    {{b.desc|linebreaks }}
+
+{% endfor %}
+{% endif %}
+{% if user.is_superuser or node.owner == user %}
+<a href="/sea/add/{{node.id}}/" class="btn btn-info btn-sm" target="more2">
+  <span class="glyphicon glyphicon-plus"></span> Add more
+</a>
+{% endif %}
+{% endblock %}

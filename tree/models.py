@@ -56,3 +56,18 @@ class MagicNode(AL_Node):
 
     def __str__(self):
         return self.desc
+############################################################
+class Quiz(models.Model):
+    node = models.ForeignKey(MagicNode, on_delete=models.CASCADE)
+    number = models.PositiveIntegerField()
+    desc = models.CharField(max_length=255)
+    figure = models.ImageField(upload_to='uploads/%Y/%m/%d',
+                               blank=True,
+                               null=True,)
+    text = models.TextField(
+            blank=True)
+    is_open = models.BooleanField(default = False)
+    answer = models.IntegerField()
+
+    def __str__(self):
+        return self.desc + ' ( ' + str(self.node)+ ' # '+ str(self.number) + ' )'
