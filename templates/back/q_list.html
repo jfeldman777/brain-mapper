@@ -31,9 +31,11 @@ onclick="return confirm('delete item: r u sure?') ? true : false;"
               </a>
 {% endif %}
 {% if user.is_superuser or user.profile.role == 'S' %}
+{% if b.is_ready %}
 <a href="/exam/{{b.id}}/" target="exam">
 |<i class='fas fa-pen-nib'></i>|
 </a>
+{% endif %}
 {% endif %}
 </div>
 

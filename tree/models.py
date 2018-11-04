@@ -64,10 +64,16 @@ class Quiz(models.Model):
     figure = models.ImageField(upload_to='uploads/%Y/%m/%d',
                                blank=True,
                                null=True,)
-    text = models.TextField(
-            blank=True)
+    text = models.TextField(blank=True)
     is_open = models.BooleanField(default = False)
-    answer = models.IntegerField()
+    answer = models.IntegerField(blank=True)
+    is_ready = models.BooleanField(default = False)
 
     def __str__(self):
         return self.desc + ' ( ' + str(self.node)+ ' # '+ str(self.number) + ' )'
+
+class Exam(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.PROTECT)
+    quiz = models.ForeignKey(Quiz, on_delete=models.PROTECT)
+    answer = models.IntegerField(blank=True)
+    text = models.TextField(blank=True)
