@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1>
+Задачи
+</h1>
+{% if boats %}
+
+{% for b in boats %}
+<button class="accordion"><b>{{b.number}}) {{b.desc}}</b></button>
+<div class="panel">
+      {{b.text|linebreaks }}
+
+          {% if b.figure and b.figure != 'False'%}
+          <img src="{{b.figure.url}}"  />
+      <br>
+      {% endif %}
+={{b.answer}}=
+
+{% if user.is_superuser or node.owner == user %}
+<hr>
+<a href="/q_delete/{{b.id}}/" title="delete item" target="more3"
+onclick="return confirm('delete item: r u sure?') ? true : false;"
+>         <i class='fas fa-trash-alt'></i>       </a>|
+       <a href="/q_edit/{{b.id}}/" title="edit item" target="more3">
+<i class='far fa-edit'></i>
+</a>|
+              <a href="/q_figure/{{b.id}}/"
+              title='edit figure' target="a1">
+    <i class='far fa-image'></i>
+              </a>
+{% endif %}
+
+</div>
+
+{% endfor %}
+{% endif %}
+{% if user.is_superuser or node.owner == user %}
+<a href="/q_add/{{node.id}}/" class="btn btn-info btn-sm" target="more2">
+  <i class='fas fa-plus'></i>
+   Add more
+</a>
+{% endif %}
+{% endblock %}

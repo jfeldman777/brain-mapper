@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import MagicNode
+from .models import MagicNode, Quiz
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User
@@ -8,7 +8,7 @@ def msg(request,msg):
     return render(request, 'msg.html', {'msg': msg})
 
 class MoveItemForm(forms.Form):
-    base_name = forms.CharField(max_length=100)
+    base_id = forms.IntegerField()
     location = forms.ChoiceField(choices=((1,'sibling before'),(2,'sibling after'),(3,'first child below')))
 
 
@@ -19,10 +19,10 @@ def move_item(request,id):
         form = MoveItemForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
-            base_name = form.cleaned_data['base_name']
+            base_id = int(form.cleaned_data['base_id'])
             location = int(form.cleaned_data['location'])
 
-            base_node = MagicNode.objects.get(desc=base_name)
+            base_node = MagicNode.objects.get(pk=base_id)
             if location == 1:
                 node.move(base_node,pos='left')
             elif location == 2:
@@ -161,4 +161,54 @@ def change_figure(request,id):
 
     return render(request, 'change_figure.html',
             {'form': form, 'node':node
+            })
+
+def q_delete(request,id):
+    q = Quiz.objects.get(id=id)
+    q.delete()
+    return msg(request,'deleted')
+
+class QuizForm(ModelForm):
+    class Meta:
+        model = Quiz
+        exclude = ['figure','node']
+
+def q_edit(request,id):
+    q = get_object_or_404(Quiz, id=id)
+    form = QuizForm(request.POST or None, instance = q)
+    if form.is_valid():
+            form.save()
+            return msg(request,'edit request done')
+    return render(request, 'change_txt.html',
+            {'form': form,
+            })
+
+def q_list(request,id):
+    node = MagicNode.objects.get(pk = id)
+    qs = Quiz.objects.filter(node_id=id).order_by('number')
+    return render(request,'q_list.html',
+        {'boats':qs, 'node':node}
+        )
+
+def q_add(request,id):
+    node = MagicNode.objects.get(id=id)
+    form = QuizForm(request.POST or None)
+    if form.is_valid():
+            q = form.save(commit=False)
+            q.node = node
+            q.save()
+            return msg(request,'add request done')
+    return render(request, 'change_txt.html',
+            {'form': form,'node':node
+            })
+
+def q_figure(request,id):
+    q = Quiz.objects.get(id=id)
+    form = ChangeFigureForm(request.POST or None, request.FILES or None, instance = q)
+    if form.is_valid():
+        q = form.save()
+        return msg(request,'change request done')
+
+    return render(request, 'change_figure.html',
+            {'form': form, 'node':q
             })
