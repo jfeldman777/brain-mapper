@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import MagicNode, Quiz
+from .models import MagicNode, Quiz, Exam
 from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.models import User
@@ -10,7 +10,6 @@ def msg(request,msg):
 class MoveItemForm(forms.Form):
     base_id = forms.IntegerField()
     location = forms.ChoiceField(choices=((1,'sibling before'),(2,'sibling after'),(3,'first child below')))
-
 
 def move_item(request,id):
     node = MagicNode.objects.get(id=id)
@@ -211,4 +210,27 @@ def q_figure(request,id):
 
     return render(request, 'change_figure.html',
             {'form': form, 'node':q
+            })
+
+class ExamForm(ModelForm):
+    class Meta:
+        model = Exam
+        exclude = ['owner','quiz']
+
+def exam(request,id):
+    q = Quiz.objects.get(id=id)
+    try:
+        e = Exam.objects.get(owner = request.user, quiz = q)
+        form = ExamForm(request.POST or None, instance = e)
+    except:
+        form = ExamForm(request.POST or None)
+
+    if form.is_valid():
+            exam = form.save(commit=False)
+            exam.owner = request.user
+            exam.quiz = q
+            exam.save()
+            return msg(request,'done')
+    return render(request, 'change_txt.html',
+            {'form': form,'node':q
             })
