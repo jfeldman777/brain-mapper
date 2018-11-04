@@ -3,14 +3,17 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
 
 from .models import Profile
-
 from .models import Quiz
+from .models import Exam
+
+
+class ExamAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Exam, ExamAdmin)
 
 class QuizAdmin(admin.ModelAdmin):
     pass
-
 admin.site.register(Quiz, QuizAdmin)
-
 
 class ProfileInline(admin.StackedInline):
     model = Profile
