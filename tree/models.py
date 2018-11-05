@@ -10,6 +10,12 @@ from django.contrib.postgres.fields import ArrayField
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    master = models.ForeignKey(User, related_name='master',
+                    on_delete=models.SET_DEFAULT, default = 1)
+    parent = models.ForeignKey(User, related_name='parent',
+                    on_delete=models.SET_DEFAULT, default = 1)
+
     ROLES = (
         ('D','директор'),
         ('С','спец по содержанию'),

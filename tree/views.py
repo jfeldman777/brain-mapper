@@ -17,6 +17,8 @@ def tree_nav(request,id=1):
 
 
 def i_par(request):
+
+    
     return render(request,'i_par.html')
 
 def i_stu(request):
