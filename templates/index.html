@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 {% load i18n %}
-
+{% block title %}Home{% endblock %}
 {% block content %}
 
 <h3>
 Вы кто?
 <h3>
 <ul>
-  <li><a href="i_dir/">директор</a></li>
-    <li><a href="i_tut/">тьютор</a></li>
-  <li><a href="tree_nav/1/">куррикулист</a></li>
-    <li><a href="i_stu/">ученик</a></li>
-      <li><a href="i_par/">родитель</a></li>
-        <li><a href="i_tea/">учитель</a></li>
-          <li><a href="i_gue/">гость</a></li>
-              <li><a href="i_adm/">администратор</a></li>
+  <li><a href="i_dir/">Директор</a></li>
+    <li><a href="i_tut/">Тьютор</a></li>
+  <li><a href="tree_nav/1/" target="navigator">Автор учебника</a></li>
+    <li><a href="i_stu/">Ученик</a></li>
+      <li><a href="i_par/">Родитель</a></li>
+        <li><a href="i_tea/">Учитель</a></li>
+          <li><a href="i_gue/">Гость</a></li>
+              <li><a href="i_adm/">Администратор</a></li>
 </ul>
 {% if user.is_authenticated %}
 <a href="/accounts/logout/" title='выйти из системы' >

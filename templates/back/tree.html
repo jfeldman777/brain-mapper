@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-
+{% block title %}Subtree{% endblock %}
 {% block content %}
 <h3>{% trans 'Subtree' %}</h3>
 {% for item, info in annotated_list %}
@@ -9,7 +9,7 @@
     {% else %}
         </li><li>
     {% endif %}
-<a href="/tree_nav/{{item.id}}/">
+<a href="/tree_nav/{{item.id}}/" target="navigator">
     {{ item }}
 </a>
     {% if not item.is_ready %}

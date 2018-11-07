@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load embed_video_tags %}
-
+{% block title %}Navigator{% endblock %}
 {% block content %}
 
 <div class="row">
   <div class="col-sm-4">
-    <a href="/subtree/{{node.id}}/">{% trans 'Subtree below' %}</a>
+    <a href="/subtree/{{node.id}}/" target="subtree">{% trans 'Subtree below' %}</a>
     <h2>{% trans 'Navigator' %}</h2>
     {% if parent %}
       <a href="/tree_nav/{{parent.id}}/">

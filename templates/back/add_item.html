@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% block title %}Add{% endblock %}
 {% block content %}
 
 {% if user.is_superuser or old_node.owner == user %}
