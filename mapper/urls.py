@@ -27,9 +27,11 @@ if settings.DEBUG:#в этом режиме медиафайлы берутся 
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [
+    path('kid2parent/', views.kid2parent, name='kid2parent'),
     path('register_adm/', views.register_adm, name='register_adm'),
     path('register_dir/', views.register_dir, name='register_dir'),
     path('register_tut/', views.register_tut, name='register_tut'),
+    
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
 

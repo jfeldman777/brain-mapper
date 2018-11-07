@@ -55,8 +55,14 @@ integrity='sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yI
     {% endblock content %}
   </div>
         <div class="jumbotron">
-        <a href='/' target="home">Домой</a> |
-        <a href="/admin/" target="admin"> Панель администратора </a>
+        <a href='/' target="home">Домой</a>
+{% if user.is_superuser %}
+        | <a href="/admin/" target="admin"> Панель администратора </a>
+{% endif %}
+
+{% if user.is_staff %}
+      | <a href="/accounts/password_change/" target="staff"> Сменить пароль </a>
+{% endif %}
     </div>
         </div>
 
