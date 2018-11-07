@@ -32,7 +32,7 @@ def kid2parent(request):
     form = Kid2ParentForm(request.POST or None, master=request.user)
     if form.is_valid():
         form.save()
-    return render(request,'change_txt.html', {'form':form})
+    return render(request,'form.html', {'form':form})
 
 class ParentKidRootForm(forms.Form):
     kid = forms.ChoiceField()

@@ -142,8 +142,8 @@ def change_txt(request,id):
         node = form.save()
         return msg(request,'change request done')
 
-    return render(request, 'change_txt.html',
-                {'form': form, 'node':node
+    return render(request, 'form.html',
+                {'form': form,
                 })
 
 class ChangeFigureForm(ModelForm):
@@ -178,7 +178,7 @@ def q_edit(request,id):
     if form.is_valid():
             form.save()
             return msg(request,'edit request done')
-    return render(request, 'change_txt.html',
+    return render(request, 'form.html',
             {'form': form,
             })
 
@@ -197,8 +197,8 @@ def q_add(request,id):
             q.node = node
             q.save()
             return msg(request,'add request done')
-    return render(request, 'change_txt.html',
-            {'form': form,'node':node
+    return render(request, 'form.html',
+            {'form': form,
             })
 
 def q_figure(request,id):
@@ -231,6 +231,6 @@ def exam(request,id):
             exam.quiz = q
             exam.save()
             return msg(request,'done')
-    return render(request, 'change_txt.html',
-            {'form': form,'node':q
+    return render(request, 'form.html',
+            {'form': form,
             })
