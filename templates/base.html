@@ -60,10 +60,10 @@ integrity='sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yI
 {% if user.is_superuser %}
         | <a href="/admin/" target="admin"> Панель администратора </a>
 {% endif %}
-
 {% if user.is_staff %}
       | <a href="/accounts/password_change/" target="staff"> Сменить пароль </a>
 {% endif %}
+| <a href="/tree_nav/1/" target="navigator">Читать описание системы</a>
     </div>
         </div>
 
