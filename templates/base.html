@@ -46,6 +46,14 @@ integrity='sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yI
               overflow: hidden;
           }
           </style>
+          <script>
+              {% if messages %}
+                  {% for message in messages %}
+                      alert(message);
+                  {% endfor %}
+              {% endif %}
+          </script>
+
 
   </head>
 
@@ -63,7 +71,28 @@ integrity='sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yI
 {% if user.is_staff %}
       | <a href="/accounts/password_change/" target="staff"> Сменить пароль </a>
 {% endif %}
+
+{% if user.is_authenticated %}
+      | <a href="/search_subj/" target="search"> Искать тему </a>
+{% endif %}
+
 | <a href="/tree_nav/1/" target="navigator">Читать описание системы</a>
+
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+
     </div>
         </div>
 

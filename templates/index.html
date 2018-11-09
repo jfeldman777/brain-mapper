@@ -8,15 +8,29 @@
 <h3>
 <ul>
 {% if user.is_authenticated %}
-  <li><a href="i_dir/">Директор</a></li>
-    <li><a href="i_tut/">Тьютор</a></li>
-  <li><a href="tree_nav/1/" target="navigator">Автор учебника</a></li>
-    <li><a href="i_stu/">Ученик</a></li>
-      <li><a href="i_par/">Родитель</a></li>
-        <li><a href="i_tea/">Учитель</a></li>
-          <li><a href="i_adm/">Администратор</a></li>
+{% if user.is_superuser %}
+          <li><a href="/i_adm/">Администратор</a></li>
+{% endif %}
+{% if user.is_superuser or useer.profile.role == 'D' %}
+  <li><a href="/i_dir/">Директор</a></li>
+{% endif %}
+{% if user.is_superuser or useer.profile.role == "D" or useer.profile.role == "T" %}
+    <li><a href="/i_tut/">Тьютор</a></li>
+{% endif %}
+{% if user.is_superuser or useer.profile.role == "D" or useer.profile.role == "C" %}
+  <li><a href="/tree_nav/1/" target="navigator">Автор учебника</a></li>
+{% endif %}
+{% if user.is_superuser or useer.profile.role == "D" or useer.profile.role == "T" or useer.profile.role == "H" %}
+          <li><a href="/i_tea/">Учитель</a></li>
+          {% endif %}
+          {% if user.is_superuser or useer.profile.role == "P"%}
+      <li><a href="/i_par/">Родитель</a></li>
+      {% endif %}
+      {% if user.is_superuser or useer.profile.role == "S"%}
+    <li><a href="/i_stu/">Ученик</a></li>
+      {% endif %}
   {% else %}
-          <li><a href="i_gue/">Гость</a></li>
+          <li><a href="/i_gue/">Гость</a></li>
 {% endif %}
 </ul>
 {% if user.is_authenticated %}

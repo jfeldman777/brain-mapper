@@ -1,6 +1,6 @@
 from django import forms
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 from django.contrib.auth.forms import UserCreationForm
@@ -75,11 +75,11 @@ TUT_ROLES = [
 
 DIR_ROLES = [
     ('T','Тьютор'),
-    ('H','Учитель'),
-    ('C','Спец по содержанию')
+    ('Z','Учитель'),
+    ('W','Автор учебника'),
 ]
 
-ADM_ROLES = DIR_ROLES + TUT_ROLES
+ADM_ROLES = DIR_ROLES + TUT_ROLES + [('D','Директор')]
 
 class ProfileForm(forms.ModelForm):
     class Meta:
@@ -97,18 +97,22 @@ class ProfileForm(forms.ModelForm):
 
        self.fields["role"].choices = ch
 
+from django.contrib import messages
+
 def register(request,type):
     f_user = UserCreationForm(request.POST or None)
     f_role = ProfileForm(request.POST or None, type=type)
-
-    if f_user.is_valid() and f_role.is_valid():
-        user = f_user.save()
-        profile = f_role.save(commit=False)
-        profile.user = user
-        profile.master = request.user
-        profile.save()
-
-        return redirect(request,'')
+    if request.method == 'POST':
+        if f_user.is_valid() and f_role.is_valid():
+            user = f_user.save()
+            profile = f_role.save(commit=False)
+            profile.user = user
+            profile.master = request.user
+            profile.save()
+            return index(request)
+        else:
+            print('bad')
+            messages.error(request, "Error")
 
     return render(request, 'signup2.html',{'form': f_user,'form2': f_role,
                             })
