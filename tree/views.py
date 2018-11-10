@@ -5,8 +5,26 @@ from django.http import HttpResponse
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, MagicNode
 from .v_cur import tree
+
+class NameForm(forms.Form):
+    topic = forms.CharField(max_length=100)
+
+def topic_search(request):
+    result = None
+    if request.method == 'POST':
+        form = NameForm(request.POST)
+        if form.is_valid():
+            topic = form.cleaned_data['topic']
+            result = MagicNode.objects.filter(desc__icontains=topic)
+    else:
+        form = NameForm()
+
+    return render(request, 'topic_search.html',
+        {'form': form,
+         'result': result,
+        })
 
 def index(request):
     return render(request,'index.html')
