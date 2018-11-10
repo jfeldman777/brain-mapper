@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}Ыуу гы{% endblock %}
+{% block content %}
+
+<h3>
+Наши сотрудники
+</h3>
+{% for q in qs %}
+<button class="accordion"><b>{{q}}</b></button>
+<div class="panel">
+фотография, биография, контакты
+</div>
+{% endfor %}
+{% endblock %}

@@ -8,6 +8,16 @@ from django.contrib.auth.models import User
 from .models import Profile, MagicNode
 from .v_cur import tree
 
+def see_us(request,type):
+    qs = None
+    if type == 'dir':
+        qs = User.objects.filter(profile__role__in='D')
+    elif type == 'tut':
+        qs = User.objects.filter(profile__role__in='DT')
+    elif type == 'all':
+        qs = User.objects.filter(profile__role__in='DTZW')
+    return render(request,'see_us.html',{'qs':qs})
+
 class NameForm(forms.Form):
     topic = forms.CharField(max_length=100)
 

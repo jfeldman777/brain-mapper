@@ -4,29 +4,29 @@
 {% block content %}
 
 <h3>
-Вы кто?
+Вы кто? 
 <h3>
 <ul>
 {% if user.is_authenticated %}
 {% if user.is_superuser %}
           <li><a href="/i_adm/">Администратор</a></li>
 {% endif %}
-{% if user.is_superuser or useer.profile.role == 'D' %}
+{% if user.is_superuser or user.profile.role == 'D' %}
   <li><a href="/i_dir/">Директор</a></li>
 {% endif %}
-{% if user.is_superuser or useer.profile.role == "D" or useer.profile.role == "T" %}
+{% if user.is_superuser or user.profile.role == "D" or user.profile.role == "T" %}
     <li><a href="/i_tut/">Тьютор</a></li>
 {% endif %}
-{% if user.is_superuser or useer.profile.role == "D" or useer.profile.role == "C" %}
+{% if user.is_superuser or user.profile.role == "D" or user.profile.role == "W" %}
   <li><a href="/tree_nav/1/" target="navigator">Автор учебника</a></li>
 {% endif %}
-{% if user.is_superuser or useer.profile.role == "D" or useer.profile.role == "T" or useer.profile.role == "H" %}
+{% if user.is_superuser or user.profile.role == "D" or user.profile.role == "T" or user.profile.role == "Z" %}
           <li><a href="/i_tea/">Учитель</a></li>
           {% endif %}
-          {% if user.is_superuser or useer.profile.role == "P"%}
+          {% if user.is_superuser or user.profile.role == "P"%}
       <li><a href="/i_par/">Родитель</a></li>
       {% endif %}
-      {% if user.is_superuser or useer.profile.role == "S"%}
+      {% if user.is_superuser or user.profile.role == "S"%}
     <li><a href="/i_stu/">Ученик</a></li>
       {% endif %}
   {% else %}
