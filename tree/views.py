@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Profile, MagicNode
-from .v_cur import tree
+from .v_cur import tree, msg
 
 def see_us(request,type):
     qs = None
@@ -43,23 +43,28 @@ def tree_nav(request,id=1):
     d = tree(id)
     return render(request,'tree_nav.html',d)
 
-class Kid2ParentForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ['parent','user']
+class Kid2ParentForm(forms.Form):
+    parent = forms.ChoiceField()
+    kid = forms.ChoiceField()
 
     def __init__(self, *args, **kwargs):
        master = kwargs.pop('master')
        super(Kid2ParentForm, self).__init__(*args, **kwargs)
-       self.fields["user"].queryset = User.objects.filter(
-                profile__master=master,profile__role='S')
-       self.fields["parent"].queryset = User.objects.filter(
-                profile__master=master,profile__role='P')
+       self.fields['kid'] = forms.ModelChoiceField(
+            queryset=User.objects.filter(
+                     profile__master=master,profile__role='S'))
+       self.fields['parent'] = forms.ModelChoiceField(
+            queryset=User.objects.filter(
+                     profile__master=master,profile__role='P'))
 
 def kid2parent(request):
     form = Kid2ParentForm(request.POST or None, master=request.user)
     if form.is_valid():
-        form.save()
+        u = form.cleaned_data['kid']
+        profile = Profile.objects.get(user=u)
+        profile.parent = form.cleaned_data['parent']
+        profile.save()
+        return msg(request,'done')
     return render(request,'form.html', {'form':form})
 
 class ParentKidRootForm(forms.Form):
