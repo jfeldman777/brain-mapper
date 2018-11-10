@@ -92,8 +92,24 @@ def i_tea(request):
 def i_gue(request):
     return render(request,'i_gue.html')
 
+def prof_figure(request,id):
+    return index(request)
+
+def prof_txt(request,id):
+    return index(request)
+
 def i_tut(request):
-    return render(request,'i_tut.html')
+    user = request.user
+    qs_par = User.objects.filter(profile__master=user, profile__role = 'P')
+    qs_stu = User.objects.filter(profile__master=user, profile__role = 'S')
+    qs_tea = User.objects.filter(profile__master=user, profile__role = 'Z')
+
+    return render(request,'i_tut.html',
+    {
+        'qs_par':qs_par,
+        'qs_stu':qs_stu,
+        'qs_tea':qs_tea
+    })
 
 def i_dir(request):
     return render(request,'i_dir.html')

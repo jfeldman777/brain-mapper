@@ -9,9 +9,55 @@
     Зарегистрировать нового пользователя.</a>
   </h2>
 
-  <h2><a href="/fill_profile/">
-    Заполнить профиль пользователя.</a>
-  </h2>
+<h2>Посмотреть своих. Заполнить профиль. </h2>
+
+<button class="accordion"><b>родители</b></button>
+<div class="panel">
+<ul>
+{% for q in qs_par %}
+<li>{{q}}
+  <a href="/prof_figure/{{q.id}}/"
+  title='edit figure' target="a1">
+<i class='far fa-image'></i>
+  </a>
+  <a href="/prof_txt/{{q.id}}/"
+  title='edit txt' target="a1">
+<i class='far fa-edit'></i>
+  </a>
+</li>
+{%  endfor %}
+</ul>
+</div>
+
+<button class="accordion"><b>дети</b></button>
+<div class="panel">
+  <ul>
+  {% for q in qs_stu %}
+  <li>{{q}}
+    <a href="/prof_figure/{{q.id}}/"
+    title='edit figure' target="a1">
+<i class='far fa-image'></i>
+    </a>
+    <a href="/prof_txt/{{q.id}}/"
+    title='edit txt' target="a1">
+<i class='far fa-edit'></i>
+    </a>
+  </li>
+  {% endfor %}
+  </ul>
+</div>
+
+<button class="accordion"><b>учителя</b></button>
+<div class="panel">
+  <ul>
+  {% for q in qs_tea %}
+  <li>{{q}}
+
+
+  </li>
+  {%  endfor %}
+  </ul>
+</div>
 
   <h2><a href="/kid2parent/">
     Связать родителя и ребенка</a>
