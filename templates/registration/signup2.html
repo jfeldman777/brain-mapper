@@ -1,14 +1,14 @@
 <!-- templates/signup.html -->
 {% extends 'base.html' %}
 
-{% block title %}Создать пользователя{% endblock %}
+{% block title %}{{title}}{% endblock %}
 
 {% block content %}
-  <h2>Sign up</h2>
+  <h2>{{title}}</h2>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
     {{ form2.as_p }}
-    <button type="submit">Sign up</button>
+    <button type="submit">{{title}}</button>
   </form>
 {% endblock %}

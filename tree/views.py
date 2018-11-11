@@ -9,11 +9,41 @@ from django.contrib.auth.models import User
 from .models import Profile, MagicNode
 from .v_cur import tree, msg
 
+def my_txt(request,id):
+    user = User.objects.get(id=id)
+    profile = Profile.objects.get(user=user)
+    title = 'Change profile'
+    f_user = UserTxtForm(request.POST or None, instance=user)
+    f_profile = ProfileTxtForm(request.POST or None, instance=profile)
+    if request.method == 'POST':
+        if f_user.is_valid() and f_profile.is_valid():
+            f_user.save()
+            f_profile.save()
+
+            return index(request)
+        else:
+            print('bad')
+            messages.error(request, "Error")
+
+    return render(request, 'signup2.html',{'form': f_user,'form2': f_profile,
+                            'title':title
+                            })
+
+class ProfileTxtForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['birth_date']
 
 class ChangeImgForm(ModelForm):
     class Meta:
         model = Profile
         fields = ['img']
+
+class UserTxtForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name','last_name','email']
+
 
 def prof_img(request,id):
     node = Profile.objects.get(user_id=id)
@@ -26,27 +56,6 @@ def prof_img(request,id):
             {'form': form, 'node':node
             })
 
-class ChangeProfileForm(ModelForm):
-    class Meta:
-        model = Profile
-        exclude = [
-        'master', 'user', 'parent',
-        'img',
-        ]
-
-def change_txt(request,id):
-    node = get_object_or_404(Profile, user_id=id)
-    form = ChangeTxtForm(request.POST or None, instance=node)
-    if form.is_valid():
-        node = form.save()
-        return msg(request,'change request done')
-
-    return render(request, 'form.html',
-                {'form': form,
-                })
-
-def prof_txt(request,id):
-    pass
 
 def see_us(request,type):
     qs = None
@@ -189,6 +198,7 @@ class ProfileForm1(forms.ModelForm):
 from django.contrib import messages
 
 def register(request,type):
+    title = 'Create new user'
     f_user = UserCreationForm(request.POST or None)
     f_role = ProfileForm1(request.POST or None, type=type)
     if request.method == 'POST':
@@ -204,6 +214,7 @@ def register(request,type):
             messages.error(request, "Error")
 
     return render(request, 'signup2.html',{'form': f_user,'form2': f_role,
+                            'title':title
                             })
 
 def register_adm(request):

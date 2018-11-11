@@ -20,10 +20,10 @@
   title='edit figure' target="a1">
 <i class='far fa-image'></i>
   </a>
-  <a href="/prof_txt/{{q.id}}/"
-  title='edit txt' target="a1">
+  <a href="/my_txt/{{q.id}}/"
+  title='edit profile txt' target="a1" >
 <i class='far fa-edit'></i>
-  </a>
+  </a>{{ q.get_full_name }}  |{{q.email}}|{{q.profile.birth_date}}
   {% if q.profile.img %}<br>
     <img src="{{q.profile.img.url}}"  />
     {% endif %}
@@ -41,10 +41,10 @@
     title='edit figure' target="a1">
 <i class='far fa-image'></i>
     </a>
-    <a href="/prof_txt/{{q.id}}/"
+    <a href="/my_txt/{{q.id}}/"
     title='edit txt' target="a1">
 <i class='far fa-edit'></i>
-    </a>
+    </a>  {{ q.get_full_name }}  |{{q.email}}|{{q.profile.birth_date}}
       {% if q.profile.img %}<br>
     <img src="{{q.profile.img.url}}"  />
         {% endif %}
@@ -57,8 +57,8 @@
 <div class="panel">
   <ul>
   {% for q in qs_tea %}
-  <li>{{q}}
-
+  <li>{{q}}|
+  {{ q.get_full_name }}  |{{q.email}}|{{q.profile.birth_date}}
 
   </li>
   {%  endfor %}

@@ -35,6 +35,8 @@ class Profile(models.Model):
     img = models.ImageField(upload_to='uploads/%Y/%m/%d',
                                blank=True,
                                null=True,)
+
+    birth_date = models.DateField(null=True, blank=True)                           
 #############################################################
 class MagicNode(AL_Node):
     owner = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default = 1)

@@ -3,10 +3,8 @@ from django.urls import path
 from . import views, v_cur
 
 urlpatterns = [
-
+    path('my_txt/<int:id>/', views.my_txt,name='my_txt'),
     path('prof_img/<int:id>/', views.prof_img),
-    path('prof_txt/<int:id>/', views.prof_txt),
-
     path('see_us/<slug:type>/', views.see_us),
     path('topic_search/', views.topic_search),
     path('exam/<int:id>/', v_cur.exam),
