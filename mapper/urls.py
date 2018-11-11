@@ -31,7 +31,7 @@ urlpatterns += [
     path('register_adm/', views.register_adm, name='register_adm'),
     path('register_dir/', views.register_dir, name='register_dir'),
     path('register_tut/', views.register_tut, name='register_tut'),
-    
+
     path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
 
@@ -42,6 +42,5 @@ urlpatterns += [
     path('i_stu/', views.i_stu, name='i_stu'),
     path('i_gue/', views.i_gue, name='i_gue'),
     path('i_adm/', views.i_adm, name='i_adm'),
-
     path('', include('tree.urls')),
 ]

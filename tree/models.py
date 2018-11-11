@@ -31,6 +31,10 @@ class Profile(models.Model):
         choices=ROLES,
         default='U',
     )
+
+    img = models.ImageField(upload_to='uploads/%Y/%m/%d',
+                               blank=True,
+                               null=True,)
 #############################################################
 class MagicNode(AL_Node):
     owner = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default = 1)

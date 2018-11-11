@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import ModelForm
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
@@ -7,6 +8,45 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Profile, MagicNode
 from .v_cur import tree, msg
+
+
+class ChangeImgForm(ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['img']
+
+def prof_img(request,id):
+    node = Profile.objects.get(user_id=id)
+    form = ChangeImgForm(request.POST or None, request.FILES or None, instance = node)
+    if form.is_valid():
+        node = form.save()
+        return msg(request,'change request done')
+
+    return render(request, 'change_figure.html',
+            {'form': form, 'node':node
+            })
+
+class ChangeProfileForm(ModelForm):
+    class Meta:
+        model = Profile
+        exclude = [
+        'master', 'user', 'parent',
+        'img',
+        ]
+
+def change_txt(request,id):
+    node = get_object_or_404(Profile, user_id=id)
+    form = ChangeTxtForm(request.POST or None, instance=node)
+    if form.is_valid():
+        node = form.save()
+        return msg(request,'change request done')
+
+    return render(request, 'form.html',
+                {'form': form,
+                })
+
+def prof_txt(request,id):
+    pass
 
 def see_us(request,type):
     qs = None
@@ -130,10 +170,10 @@ DIR_ROLES = [
 
 ADM_ROLES = DIR_ROLES + TUT_ROLES + [('D','Директор')]
 
-class ProfileForm(forms.ModelForm):
+class ProfileForm1(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['user','master','parent']
+        fields = ['role']
     def __init__(self, *args, **kwargs):
        type = kwargs.pop('type')
        super(ProfileForm, self).__init__(*args, **kwargs)
@@ -150,7 +190,7 @@ from django.contrib import messages
 
 def register(request,type):
     f_user = UserCreationForm(request.POST or None)
-    f_role = ProfileForm(request.POST or None, type=type)
+    f_role = ProfileForm1(request.POST or None, type=type)
     if request.method == 'POST':
         if f_user.is_valid() and f_role.is_valid():
             user = f_user.save()

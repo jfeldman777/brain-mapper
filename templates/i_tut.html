@@ -16,7 +16,7 @@
 <ul>
 {% for q in qs_par %}
 <li>{{q}}
-  <a href="/prof_figure/{{q.id}}/"
+  <a href="/prof_img/{{q.id}}/"
   title='edit figure' target="a1">
 <i class='far fa-image'></i>
   </a>
@@ -24,6 +24,9 @@
   title='edit txt' target="a1">
 <i class='far fa-edit'></i>
   </a>
+  {% if q.profile.img %}<br>
+    <img src="{{q.profile.img.url}}"  />
+    {% endif %}
 </li>
 {%  endfor %}
 </ul>
@@ -34,7 +37,7 @@
   <ul>
   {% for q in qs_stu %}
   <li>{{q}}
-    <a href="/prof_figure/{{q.id}}/"
+    <a href="/prof_img/{{q.id}}/"
     title='edit figure' target="a1">
 <i class='far fa-image'></i>
     </a>
@@ -42,6 +45,9 @@
     title='edit txt' target="a1">
 <i class='far fa-edit'></i>
     </a>
+      {% if q.profile.img %}<br>
+    <img src="{{q.profile.img.url}}"  />
+        {% endif %}
   </li>
   {% endfor %}
   </ul>
