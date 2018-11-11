@@ -7,7 +7,6 @@ from treebeard.al_tree import AL_Node
 from embed_video.fields import EmbedVideoField
 from django.contrib.postgres.fields import ArrayField
 
-# Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
@@ -36,7 +35,7 @@ class Profile(models.Model):
                                blank=True,
                                null=True,)
 
-    birth_date = models.DateField(null=True, blank=True)                           
+    birth_date = models.DateField(null=True, blank=True)
 #############################################################
 class MagicNode(AL_Node):
     owner = models.ForeignKey(User, on_delete=models.SET_DEFAULT, default = 1)
@@ -89,3 +88,13 @@ class Exam(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.PROTECT)
     answer = models.IntegerField(blank=True)
     text = models.TextField(blank=True)
+
+class Ticket(models.Model):
+    student = models.ForeignKey(User, on_delete=models.PROTECT, related_name='student')
+    teacher = models.ForeignKey(User, on_delete=models.PROTECT, related_name='teacher')
+    book = models.ForeignKey(MagicNode, on_delete=models.PROTECT)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    class Meta:
+        ordering = ['-updated_at','-created_at',]
+    
