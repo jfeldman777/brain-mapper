@@ -32,11 +32,15 @@
 </ul>
 </div>
 
-<button class="accordion"><b>дети</b></button>
+<button class="accordion"><b>студенты</b></button>
 <div class="panel">
   <ul>
   {% for q in qs_stu %}
-  <li>{{q}}
+  <li>
+    <a href="/kid2book/{{q.id}}/" target="book" title='book and teacher'>
+      <i class="fas fa-book-open"></i>
+      </a>
+{{q}}
     <a href="/prof_img/{{q.id}}/"
     title='edit figure' target="a1">
 <i class='far fa-image'></i>
@@ -68,10 +72,5 @@
   <h2><a href="/kid2parent/">
     Связать родителя и ребенка</a>
   </h2>
-
-  <h2><a href="/kid2book/">
-      Связать студента с темой и учителем</a>
-  </h2>
-
 
 {% endblock %}
