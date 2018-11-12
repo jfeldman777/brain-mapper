@@ -6,7 +6,7 @@ from django.http import HttpResponse
 
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from .models import Profile, MagicNode
+from .models import Profile, MagicNode, Ticket
 from .v_cur import tree, msg
 
 def my_txt(request,id):
@@ -116,20 +116,26 @@ def kid2parent(request):
         return msg(request,'done')
     return render(request,'form.html', {'form':form})
 
-class ParentKidRootForm(forms.Form):
+class ParentKidForm(forms.Form):
     kid = forms.ChoiceField()
-    root = forms.IntegerField()
-
     def __init__(self, *args, **kwargs):
        user = kwargs.pop('user')
-       super(ParentKidRootForm, self).__init__(*args, **kwargs)
-       self.fields["kid"].queryset = User.objects.filter(profile__parent=user)
-       print(self.fields["kid"].queryset)
-       self.fields["root"].default = 1
+       super(ParentKidForm, self).__init__(*args, **kwargs)
+       self.fields['kid'] = forms.ModelChoiceField(
+                   queryset=User.objects.filter(
+                            profile__parent=user,profile__role='S'))
 
 def i_par(request):
-    form = ParentKidRootForm(user=request.user)
-
+    form = ParentKidForm(request.POST or None, user=request.user)
+    if form.is_valid():
+        kid = form.cleaned_data['kid']
+        qs = Ticket.objects.filter(student=kid).order_by('-created_at')
+        return render(request,'par2kid2book.html',
+            {
+            'kid':kid,
+            'qs':qs,
+            }
+        )
     return render(request,'i_par.html',{'form':form})
 
 def i_stu(request):
