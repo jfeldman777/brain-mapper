@@ -1,8 +1,9 @@
 from django.urls import path
 
-from . import views, v_cur
+from . import views, v_cur, v_stu
 
 urlpatterns = [
+    path('kid2book/<int:id>/', v_stu.kid2book,name='kid2book'),
     path('my_txt/<int:id>/', views.my_txt,name='my_txt'),
     path('prof_img/<int:id>/', views.prof_img),
     path('see_us/<slug:type>/', views.see_us),

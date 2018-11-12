@@ -4,8 +4,11 @@ from django.contrib.auth.models import User
 
 from .models import Profile
 from .models import Quiz
-from .models import Exam
+from .models import Exam, Ticket
 
+class TicketAdmin(admin.ModelAdmin):
+    pass
+admin.site.register(Ticket, TicketAdmin)
 
 class ExamAdmin(admin.ModelAdmin):
     pass

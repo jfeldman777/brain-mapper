@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}Kid2book{% endblock %}
+{% block content %}
+<h2>{{kid}}</h2>
+<table class="table">
+  <thead>
+     <tr>
+       <th>Тема</th>
+       <th>Учитель</th>
+       <th>когда назначено</th>
+        <th>изменить</th>
+         <th>удалить</th>
+     </tr>
+   </thead>
+   <tbody>
+{% for b in qs %}
+<tr>
+<td>{{b.book}} = {{b.book.id}}</td>
+<td>{{b.teacher}} = {{b.teacher.id}}</td>
+<td>{{b.updated_at}}</td>
+
+<td><a href="/book_edit/{{b.id}}/" target="edit" title='edit line'>
+  <i class="far fa-edit"></i><a></td>
+<td><a href="/book_del/{{b.id}}/" target="del" title='delete line'>
+  <i class="fas fa-eraser"></i><a></td>
+
+</tr>
+{% endfor %}
+<tr><td>
+<a href="/add_ticket/{{kid.id}}/">add ticket</a>
+</td></tr>
+</tbody>
+</table>
+{% endblock %}

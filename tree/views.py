@@ -141,12 +141,6 @@ def i_tea(request):
 def i_gue(request):
     return render(request,'i_gue.html')
 
-def prof_figure(request,id):
-    return index(request)
-
-def prof_txt(request,id):
-    return index(request)
-
 def i_tut(request):
     user = request.user
     qs_par = User.objects.filter(profile__master=user, profile__role = 'P')
