@@ -129,7 +129,7 @@ def i_par(request):
     form = ParentKidForm(request.POST or None, user=request.user)
     if form.is_valid():
         kid = form.cleaned_data['kid']
-        qs = Ticket.objects.filter(student=kid).order_by('-created_at')
+        qs = Ticket.objects.filter(student=kid).order_by('-updated_at')
         return render(request,'par2kid2book.html',
             {
             'kid':kid,
@@ -139,7 +139,9 @@ def i_par(request):
     return render(request,'i_par.html',{'form':form})
 
 def i_stu(request):
-    return render(request,'i_stu.html')
+    kid = request.user
+    qs = Ticket.objects.filter(student=kid).order_by('-updated_at')
+    return render(request,'i_stu.html',{'qs':qs})
 
 def i_tea(request):
     user = request.user
