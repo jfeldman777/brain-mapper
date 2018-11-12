@@ -22,13 +22,13 @@
 
 <td><a href="/book_edit/{{b.id}}/" target="edit" title='edit line'>
   <i class="far fa-edit"></i><a></td>
-<td><a href="/book_del/{{b.id}}/" target="del" title='delete line'>
+<td><a href="/book_del/{{b.id}}/"  title='delete line'>
   <i class="fas fa-eraser"></i><a></td>
 
 </tr>
 {% endfor %}
 <tr><td>
-<a href="/add_ticket/{{kid.id}}/">add ticket</a>
+<a href="/book_add/{{kid.id}}/" target='add'>add ticket</a>
 </td></tr>
 </tbody>
 </table>

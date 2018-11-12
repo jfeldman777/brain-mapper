@@ -4,6 +4,11 @@ from . import views, v_cur, v_stu
 
 urlpatterns = [
     path('kid2book/<int:id>/', v_stu.kid2book,name='kid2book'),
+
+    path('book_add/<int:id>/', v_stu.book_add,name='book_add'),
+    path('book_edit/<int:id>/', v_stu.book_edit,name='book_edit'),
+    path('book_del/<int:id>/', v_stu.book_del,name='book_del'),            
+
     path('my_txt/<int:id>/', views.my_txt,name='my_txt'),
     path('prof_img/<int:id>/', views.prof_img),
     path('see_us/<slug:type>/', views.see_us),
