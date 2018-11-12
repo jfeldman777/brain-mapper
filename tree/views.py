@@ -142,7 +142,11 @@ def i_stu(request):
     return render(request,'i_stu.html')
 
 def i_tea(request):
-    return render(request,'i_tea.html')
+    user = request.user
+    qs = Ticket.objects.filter(teacher=user).order_by('student','book','updated_at')
+    return render(request,'i_tea.html',
+        {'qs':qs}
+    )
 
 def i_gue(request):
     return render(request,'i_gue.html')
