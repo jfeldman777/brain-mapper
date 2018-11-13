@@ -87,6 +87,16 @@ def add_item(request,id,location):
             'location':location,
             })
 
+def subtree2(request,id):
+    node = MagicNode.get_first_root_node()
+    if id!=0:
+        node = MagicNode.objects.get(id=id)
+    annotated_list = MagicNode.get_annotated_list(parent=node)
+    return render(request,'tree2.html',
+                    {'annotated_list':annotated_list,
+                     })
+
+
 def subtree(request,id):
     node = MagicNode.get_first_root_node()
     if id!=0:

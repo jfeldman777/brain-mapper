@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}Subtree{% endblock %}
+{% block content %}
+<h3>{% trans 'Subtree' %}</h3>
+{% for item, info in annotated_list %}
+    {% if info.open %}
+        <ul><li>
+    {% else %}
+        </li><li>
+    {% endif %}
+<a href="/tree_nav/{{item.id}}/" target="navigator">
+    {{ item }}
+</a>
+    {% if item.has_exam %}
+    <a href="/q_list/{{item.id}}/" target="quiz" title="quiz list">
+    <i class='far fa-question-circle'></i>
+    </a>
+    {% endif %}
+    {% for close in info.close %}
+        </li></ul>
+    {% endfor %}
+{% endfor %}
+{% endblock %}

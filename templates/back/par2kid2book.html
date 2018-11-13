@@ -9,8 +9,8 @@
        <th>Тема</th>
        <th>Учитель</th>
        <th>когда назначено</th>
-        <th>закрытые задачи</th>
-         <th>открытые задачи</th>
+        <th>tree</th>
+
      </tr>
    </thead>
    <tbody>
@@ -20,11 +20,8 @@
 <td>{{b.teacher}} = {{b.teacher.id}}</td>
 <td>{{b.updated_at}}</td>
 
-<td><a href="/book_closed/{{b.id}}/" target="closed" title='closed'>
-<i class="fab fa-android"></i>
-  <a></td>
-<td><a href="/book_open/{{b.id}}/"  title='open'>
-<i class="fas fa-dove"></i>
+<td><a href="/subtree2/{{b.id}}/" target="subtree" title='subtree'>
+<i class="fas fa-tree"></i>
   <a></td>
 
 </tr>
