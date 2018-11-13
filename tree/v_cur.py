@@ -87,13 +87,46 @@ def add_item(request,id,location):
             'location':location,
             })
 
-def subtree2(request,id):
+def subtree2(request,id,kid):
     node = MagicNode.get_first_root_node()
+    student = User.objects.get(id = kid)
     if id!=0:
         node = MagicNode.objects.get(id=id)
     annotated_list = MagicNode.get_annotated_list(parent=node)
+    an_list = []
+    for item,info in annotated_list:
+        p3 = None
+        if item.has_exam:
+            help_count = 0
+            correct_count = 0
+            wrong_count = 0
+            open_count = 0
+            open = 0
+            close = 0
+            z_list = list(Quiz.objects.filter(node = item))
+            for z in z_list:
+                if z.is_ready:
+                    if z.is_open:
+                        open += 1
+                    else:
+                        close += 1
+                    try:
+                        x = Exam.objects.get(quiz = z, owner = student)
+                        if x.need_help:
+                            help_count += 1
+                        if z.is_open:
+                            open_count += 1
+                        else:
+                            if x.answer == z.answer:
+                                correct_count += 1
+                            else:
+                                wrong_count += 1
+                    except:
+                        pass
+            p3 = (help_count,correct_count,wrong_count,open_count,open,close)
+        an_list += [(item,info,[p3])]
     return render(request,'tree2.html',
-                    {'annotated_list':annotated_list,
+                    {'annotated_list':an_list,
                      })
 
 

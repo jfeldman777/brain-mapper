@@ -39,6 +39,12 @@ onclick="return confirm('delete item: r u sure?') ? true : false;"
 not ready yet
 {% endif %}
 {% endif %}
+
+{% if b.is_open %}
+<i class="fas fa-dove" title="открытая задача"></i>
+{% else %}
+<i class="fab fa-android" title="закрытая задача"></i>
+{% endif %}
 </div>
 
 {% endfor %}

@@ -86,8 +86,9 @@ class Quiz(models.Model):
 class Exam(models.Model):
     owner = models.ForeignKey(User, on_delete=models.PROTECT)
     quiz = models.ForeignKey(Quiz, on_delete=models.PROTECT)
-    answer = models.IntegerField(blank=True)
+    answer = models.IntegerField(blank=True, default=0)
     text = models.TextField(blank=True)
+    need_help = models.BooleanField(default = False)
 
 class Ticket(models.Model):
     student = models.ForeignKey(User, on_delete=models.PROTECT, related_name='student')

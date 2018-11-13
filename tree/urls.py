@@ -23,7 +23,7 @@ urlpatterns = [
     path('add_item/<int:id>/<int:location>/', v_cur.add_item),
 
     path('subtree/<int:id>/', v_cur.subtree, name='subtree'),
-    path('subtree2/<int:id>/', v_cur.subtree2, name='subtree2'),
+    path('subtree2/<int:id>/<int:kid>/', v_cur.subtree2, name='subtree2'),
 
     path('tree_nav/<int:id>/', views.tree_nav, name='tree_nav'),
     path('change_txt/<int:id>/', v_cur.change_txt, name='change_txt'),
