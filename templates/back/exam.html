@@ -8,6 +8,13 @@
 <form method="post" action=''>
   {% csrf_token %}
 {{ form.as_p }}
+
+      {% if b.figure and b.figure != 'False'%}
+          <img src="{{b.figure.url}}"  />
+      <br>
+      {% endif %}
+
+{{ form2.as_p }}
   <input type="submit" value="Submit" />
 </form>
 {% endblock %}

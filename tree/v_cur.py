@@ -127,6 +127,7 @@ def subtree2(request,id,kid):
         an_list += [(item,info,[p3])]
     return render(request,'tree2.html',
                     {'annotated_list':an_list,
+                    'kid':student
                      })
 
 
@@ -232,6 +233,33 @@ def q_list(request,id):
         {'boats':qs, 'node':node}
         )
 
+def q_list2(request,kid,id,type):
+    student = User.objects.get(id=kid)
+    a_list = []
+    qs = Quiz.objects.filter(node_id=id,is_ready=True).order_by('number')
+    z_list = list(qs)
+    for z in z_list:
+        try:
+            x = Exam.objects.get(quiz = z, owner = student)
+            if type == 'help_count' and x.need_help:
+                a_list += [z]
+            elif type == 'open_count' and z.is_open:
+                a_list += [z]
+            elif type == 'correct_count' and not z.is_open and x.answer == z.answer:
+                a_list += [z]
+            elif type == 'wrong_count' and not z.is_open and x.answer != z.answer:
+                a_list += [z]
+        except:
+            pass
+    print(a_list)
+    return render(request,'q_list2.html',
+        {'boats':a_list,
+        'kid':student,
+        'type':type
+        }
+        )
+
+
 def q_add(request,id):
     node = MagicNode.objects.get(id=id)
     form = QuizForm(request.POST or None)
@@ -262,18 +290,37 @@ class ExamForm(ModelForm):
 
 def exam(request,id):
     q = Quiz.objects.get(id=id)
+    form = QuizForm(instance=q)
     try:
         e = Exam.objects.get(owner = request.user, quiz = q)
-        form = ExamForm(request.POST or None, instance = e)
+        form2 = ExamForm(request.POST or None, instance = e)
     except:
-        form = ExamForm(request.POST or None)
+        form2 = ExamForm(request.POST or None)
 
-    if form.is_valid():
-            exam = form.save(commit=False)
+    if form2.is_valid():
+            exam = form2.save(commit=False)
             exam.owner = request.user
             exam.quiz = q
             exam.save()
             return msg(request,'done')
-    return render(request, 'form.html',
+    return render(request, 'exam.html',
             {'form': form,
+            'form2': form2,
+            'b':q,
+            'title':('exam by '+ request.user.get_full_name())
+            })
+
+def exam2(request,id,kid):
+    q = Quiz.objects.get(id=id)
+    owner = User.objects.get(id=kid)
+    e = Exam.objects.get(owner = owner, quiz = q)
+
+    form = QuizForm(instance=q)
+    form2 = ExamForm(instance = e)
+
+    return render(request, 'exam2.html',
+            {'form': form,
+                'form2': form2,
+                'b':q,
+             'title':('answers from '+ owner.get_full_name())
             })

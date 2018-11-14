@@ -14,11 +14,15 @@ urlpatterns = [
     path('see_us/<slug:type>/', views.see_us),
     path('topic_search/', views.topic_search),
     path('exam/<int:id>/', v_cur.exam),
+    path('exam2/<int:id>/<int:kid>/', v_cur.exam2),
+
     path('q_edit/<int:id>/', v_cur.q_edit),
     path('q_delete/<int:id>/', v_cur.q_delete),
     path('q_add/<int:id>/', v_cur.q_add),
     path('q_figure/<int:id>/', v_cur.q_figure),
     path('q_list/<int:id>/', v_cur.q_list),
+    path('q_list2/<int:kid>/<int:id>/<slug:type>/', v_cur.q_list2),
+
     path('move_item/<int:id>/', v_cur.move_item),
     path('add_item/<int:id>/<int:location>/', v_cur.add_item),
 

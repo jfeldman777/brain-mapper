@@ -14,43 +14,42 @@
 </a>
     {% if item.has_exam %}
     {% for help_count,correct_count,wrong_count,open_count,open,close in p3 %}
+
           {% if open %}
-<i class="fas fa-dove"
- title="открытых задач {{ open }}"
-></i>
+      <i class="fas fa-dove" title="открытых задач {{ open }}" ></i>
       {% endif %}
 
       {% if close %}
-      <i class="fab fa-android" title="закрытых задач {{ close }}"
-      ></i>
+      <i class="fab fa-android" title="закрытых задач {{ close }}" ></i>
       {% endif %}
 
       {% if open_count %}
-      <i class="fas fa-atom" title="открытых ответов {{ open_count }}"
-      ></i>
+          <a href="/q_list2/{{kid.id}}/{{item.id}}/open_count/" target="q_list">
+      <i class="fas fa-atom" title="открытых ответов {{ open_count }}" ></i>
+      </a>
       {% endif %}
 
 
       {% if correct_count %}
-      <i class="fab fa-angellist" title="верных ответов {{ correct_count }}"
-      ></i>
+          <a href="/q_list2/{{kid.id}}/{{item.id}}/correct_count/" target="q_list">
+      <i class="fab fa-angellist" title="верных ответов {{ correct_count }}" ></i>
+      </a>
       {% endif %}
 
 
       {% if wrong_count %}
-      <i class="far fa-angry" title="неверных ответов {{ wrong_count }}"
-      ></i>
+          <a href="/q_list2/{{kid.id}}/{{item.id}}/wrong_count/" target="q_list">
+      <i class="far fa-angry" title="неверных ответов {{ wrong_count }}" ></i>
+        </a>
       {% endif %}
 
       {% if help_count %}
-      <i class="fas fa-bolt" title="криков о помощи {{ help_count }}"
-      ></i>
+          <a href="/q_list2/{{kid.id}}/{{item.id}}/help_count/" target="q_list">
+      <i class="fas fa-bolt" title="криков о помощи {{ help_count }}" ></i>
+        </a>
       {% endif %}
 
     {% endfor %}
-    <a href="/q_list/{{item.id}}/" target="quiz" title="quiz list">
-    <i class='far fa-question-circle'></i>
-    </a>
     {% endif %}
     {% for close in info.close %}
         </li></ul>

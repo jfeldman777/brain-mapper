@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}Задачи {{type}}  для {{kid}}{% endblock %}
+{% block content %}
+<h1>
+Задачи {{type}}  для {{kid}}
+</h1>
+{% if boats %}
+
+{% for b in boats %}
+<button class="accordion"><b>{{b.number}}) {{b.desc}}</b></button>
+<div class="panel">
+      {{b.text|linebreaks }}
+
+          {% if b.figure and b.figure != 'False'%}
+          <img src="{{b.figure.url}}"  />
+      <br>
+      {% endif %}
+
+<hr>
+{% if user.is_superuser or user.profile.role == 'Z' %}
+<a href="/exam2/{{b.id}}/{{kid.id}}/" target="exam" title="show details">
+<i class="far fa-eye"></i>
+</a>
+{% endif %}
+
+{% endfor %}
+{% endif %}
+{% endblock %}
