@@ -216,6 +216,13 @@ class QuizForm(ModelForm):
         model = Quiz
         exclude = ['figure','node']
 
+
+class Quiz2Form(ModelForm):
+    class Meta:
+        model = Quiz
+        fields = ['number','desc','text']
+
+
 def q_edit(request,id):
     q = get_object_or_404(Quiz, id=id)
     form = QuizForm(request.POST or None, instance = q)
@@ -251,7 +258,6 @@ def q_list2(request,kid,id,type):
                 a_list += [z]
         except:
             pass
-    print(a_list)
     return render(request,'q_list2.html',
         {'boats':a_list,
         'kid':student,
@@ -290,7 +296,7 @@ class ExamForm(ModelForm):
 
 def exam(request,id):
     q = Quiz.objects.get(id=id)
-    form = QuizForm(instance=q)
+    form = Quiz2Form(instance=q)
     try:
         e = Exam.objects.get(owner = request.user, quiz = q)
         form2 = ExamForm(request.POST or None, instance = e)
@@ -307,7 +313,7 @@ def exam(request,id):
             {'form': form,
             'form2': form2,
             'b':q,
-            'title':('exam by '+ request.user.get_full_name())
+            'title':('exam by '+ str(request.user))
             })
 
 def exam2(request,id,kid):
@@ -315,12 +321,12 @@ def exam2(request,id,kid):
     owner = User.objects.get(id=kid)
     e = Exam.objects.get(owner = owner, quiz = q)
 
-    form = QuizForm(instance=q)
+    form = Quiz2Form(instance = q)
     form2 = ExamForm(instance = e)
 
     return render(request, 'exam2.html',
             {'form': form,
                 'form2': form2,
                 'b':q,
-             'title':('answers from '+ owner.get_full_name())
+             'title':('answers from '+ str(owner))
             })

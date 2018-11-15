@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}{{title}}{% endblock %}
+{% block title %}Exam{% endblock %}
 {% block content %}
 
-<h2>{{title}}
+<h2>Question
 </h2>
 <form method="post" action=''>
   {% csrf_token %}
@@ -13,7 +13,8 @@
           <img src="{{b.figure.url}}"  />
       <br>
       {% endif %}
-
+                <br>      <br>      <br>
+<h2>Answer</h2>
 {{ form2.as_p }}
   <input type="submit" value="Submit" />
 </form>
