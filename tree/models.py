@@ -77,7 +77,7 @@ class Quiz(models.Model):
                                null=True,)
     text = models.TextField(blank=True)
     is_open = models.BooleanField(default = False)
-    answer = models.IntegerField(blank=True)
+    answer = models.IntegerField(blank=True, default = 0)
     is_ready = models.BooleanField(default = False)
 
     def __str__(self):
