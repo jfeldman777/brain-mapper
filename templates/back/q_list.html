@@ -32,7 +32,7 @@ onclick="return confirm('delete item: r u sure?') ? true : false;"
 {% endif %}
 {% if user.is_superuser or user.profile.role == 'S' %}
 {% if b.is_ready %}
-<a href="/exam/{{b.id}}/" target="exam">
+<a href="/exam/{{b.id}}/" target="exam" title="write down your answer">
 |<i class='fas fa-pen-nib'></i>|
 </a>
 {% else %}
