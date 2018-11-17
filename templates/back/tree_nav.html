@@ -9,6 +9,9 @@
     <a href="/subtree/{{node.id}}/" target="subtree">{% trans 'Subtree below' %}</a>
     <h2>{% trans 'Navigator' %}</h2>
     {% if parent %}
+    {% if parent.book %}
+      <i class='fas fa-book' title="book"></i>
+    {% endif %}
       <a href="/tree_nav/{{parent.id}}/">
     {{ parent }}
       </a>
@@ -18,6 +21,9 @@
       {% for x in siblings %}
         {% if x != node %}
           <li>
+            {% if x.book %}
+              <i class='fas fa-book' title="book"></i>
+            {% endif %}
               <a href="/tree_nav/{{x.id}}/">
             {{x}}
               </a>
@@ -28,6 +34,9 @@
 
         {% else %}
         <li>
+          {% if x.book %}
+            <i class='fas fa-book' title="book"></i>
+          {% endif %}
           {{x}}
           {% if not x.is_ready %}
           <i class='fas fa-cog' title="not ready yet"></i>
@@ -61,6 +70,9 @@
           <ul>
             {% for t in children %}
               <li>
+                {% if t.book %}
+                  <i class='fas fa-book' title="book"></i>
+                {% endif %}
                 <a href="/tree_nav/{{t.id}}/">
                 {{t}}
                 </a>
@@ -101,7 +113,11 @@
 {% endif %}
 
 {% endif %}
-
+{% if node.has_exam %}
+<a href="/q_list/{{node.id}}/" target="quiz" title="quiz list">
+<h2>Задачи по теме</h2>
+</a>
+{% endif %}
   </div>
 </div>
 
