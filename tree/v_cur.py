@@ -178,6 +178,12 @@ class ChangeTxtForm(ModelForm):
         'desc', 'text', 'sites',
         'sib_order', 'video',
         'is_ready','has_exam']
+        widgets = {
+            'desc':forms.TextInput(attrs={'size':100,'maxlength':100}),
+            'sites':forms.TextInput(attrs={'size':100,'maxlength':100}),
+            'video':forms.TextInput(attrs={'size':100,'maxlength':100}),
+            'text':forms.Textarea(attrs={'cols':80, 'rows':10}),
+            }
 
 def change_txt(request,id):
     node = get_object_or_404(MagicNode, id=id)
@@ -215,13 +221,19 @@ class QuizForm(ModelForm):
     class Meta:
         model = Quiz
         exclude = ['figure','node']
-
+        widgets = {
+            'desc':forms.TextInput(attrs={'size':100,'maxlength':100}),
+            'text':forms.Textarea(attrs={'cols':80, 'rows':10}),
+            }
 
 class Quiz2Form(ModelForm):
     class Meta:
         model = Quiz
         fields = ['number','desc','text']
-
+        widgets = {
+            'desc':forms.TextInput(attrs={'size':100,'maxlength':100}),
+            'text':forms.Textarea(attrs={'cols':80, 'rows':10}),
+            }
 
 def q_edit(request,id):
     q = get_object_or_404(Quiz, id=id)
@@ -293,6 +305,10 @@ class ExamForm(ModelForm):
     class Meta:
         model = Exam
         exclude = ['owner','quiz']
+        widgets = {
+            'text':forms.Textarea(attrs={'cols':80, 'rows':10}),
+            }
+
 
 def exam(request,id):
     q = Quiz.objects.get(id=id)
