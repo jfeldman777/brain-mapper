@@ -41,7 +41,7 @@ def move_item(request,id):
             })
 
 class AddItemForm(forms.Form):
-    name = forms.CharField(max_length=100)
+    name = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'size':100}))
     location = forms.IntegerField(widget=forms.HiddenInput())
 
 class UnameForm(forms.Form):
