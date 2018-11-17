@@ -177,12 +177,13 @@ class ChangeTxtForm(ModelForm):
         fields = [
         'desc', 'text', 'sites',
         'sib_order', 'video',
-        'is_ready','has_exam','book']
+        'is_ready','has_exam','book','next']
         widgets = {
             'desc':forms.TextInput(attrs={'size':100,'maxlength':100}),
             'sites':forms.TextInput(attrs={'size':100,'maxlength':100}),
             'video':forms.TextInput(attrs={'size':100,'maxlength':100}),
             'text':forms.Textarea(attrs={'cols':80, 'rows':10}),
+            'next':forms.TextInput(attrs={'type':'number'})
             }
 
 def change_txt(request,id):

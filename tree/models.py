@@ -65,6 +65,10 @@ class MagicNode(AL_Node):
 
     has_exam = models.BooleanField(default = False)
     book = models.BooleanField(default = False)
+    next = models.ForeignKey('self',blank=True,
+                               related_name='far_away',
+                               null=True,on_delete=models.SET_NULL)
+
     def __str__(self):
         return self.desc
 ############################################################

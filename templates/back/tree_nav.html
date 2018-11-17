@@ -113,6 +113,13 @@
 {% endif %}
 
 {% endif %}
+
+{% if node.next %}
+<a href="/tree_nav/{{node.next.id}}/">
+<h2>Далее</h2>
+</a>
+{% endif %}
+
 {% if node.has_exam %}
 <a href="/q_list/{{node.id}}/" target="quiz" title="quiz list">
 <h2>Задачи по теме</h2>
