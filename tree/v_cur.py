@@ -177,7 +177,7 @@ class ChangeTxtForm(ModelForm):
         fields = [
         'desc', 'text', 'sites',
         'sib_order', 'video',
-        'is_ready','has_exam','book','next']
+        'is_ready','has_exam','book','extra','next']
         widgets = {
             'desc':forms.TextInput(attrs={'size':100,'maxlength':100}),
             'sites':forms.TextInput(attrs={'size':100,'maxlength':100}),

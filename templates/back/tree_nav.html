@@ -9,9 +9,15 @@
     <a href="/subtree/{{node.id}}/" target="subtree">{% trans 'Subtree below' %}</a>
     <h2>{% trans 'Navigator' %}</h2>
     {% if parent %}
+
     {% if parent.book %}
       <i class='fas fa-book' title="book"></i>
     {% endif %}
+
+    {% if parent.extra %}
+    <i class="fas fa-microscope" title="extra"></i>
+    {% endif %}
+
       <a href="/tree_nav/{{parent.id}}/">
     {{ parent }}
       </a>
@@ -24,6 +30,11 @@
             {% if x.book %}
               <i class='fas fa-book' title="book"></i>
             {% endif %}
+
+            {% if x.extra %}
+            <i class="fas fa-microscope" title="extra"></i>
+            {% endif %}
+
               <a href="/tree_nav/{{x.id}}/">
             {{x}}
               </a>
@@ -37,6 +48,11 @@
           {% if x.book %}
             <i class='fas fa-book' title="book"></i>
           {% endif %}
+
+          {% if x.extra %}
+          <i class="fas fa-microscope" title="extra"></i>
+          {% endif %}
+
           {{x}}
           {% if not x.is_ready %}
           <i class='fas fa-cog' title="not ready yet"></i>
@@ -73,6 +89,11 @@
                 {% if t.book %}
                   <i class='fas fa-book' title="book"></i>
                 {% endif %}
+
+                {% if t.extra %}
+                <i class="fas fa-microscope" title="extra"></i>
+                {% endif %}
+
                 <a href="/tree_nav/{{t.id}}/">
                 {{t}}
                 </a>
