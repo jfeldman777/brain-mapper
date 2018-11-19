@@ -180,9 +180,9 @@ class ChangeTxtForm(ModelForm):
         'is_ready','has_exam','book','extra','next']
         widgets = {
             'desc':forms.TextInput(attrs={'size':100,'maxlength':100}),
-            'sites':forms.TextInput(attrs={'size':100,'maxlength':100}),
+            'sites':forms.Textarea(attrs={'cols':100, 'rows':5}),
             'video':forms.TextInput(attrs={'size':100,'maxlength':100}),
-            'text':forms.Textarea(attrs={'cols':80, 'rows':10}),
+            'text':forms.Textarea(attrs={'cols':100, 'rows':10}),
             'next':forms.TextInput(attrs={'type':'number'})
             }
 
