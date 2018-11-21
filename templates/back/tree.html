@@ -1,30 +1,30 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %}Subtree{% endblock %}
+{% block title %}Поддерево{% endblock %}
 {% block content %}
-<h3>{% trans 'Subtree' %}</h3>
+<h3>Поддерево</h3>
 {% for item, info in annotated_list %}
     {% if info.open %}
         <ul><li>
     {% else %}
         </li><li>
     {% endif %}
-<a href="/tree_nav/{{item.id}}/" target="navigator">
+<a href="/tree_nav/{{item.id}}/" target="перейти в навигатор">
     {{ item }}
 </a>
     {% if not item.is_ready %}
 
-      <i class='fas fa-cog' title="not ready yet"></i>
+      <i class='fas fa-cog' title="пока не готово"></i>
 
     {% endif %}
     {% if user.is_superuser or item.owner == user %}
-    <a href="/add_item/{{item.id}}/1/" title='add before' target="c1">
+    <a href="/add_item/{{item.id}}/1/" title='добавить выше' target="c1">
 <i class='fas fa-arrow-up'></i>
     </a>
-    <a href="/add_item/{{item.id}}/2/" title='add after' target="c1">
+    <a href="/add_item/{{item.id}}/2/" title='добавить ниже' target="c1">
 <i class='fas fa-arrow-down'></i>
     </a>
-    <a href="/add_item/{{item.id}}/3/" title='add child' target="c1">
+    <a href="/add_item/{{item.id}}/3/" title='добавить подчиненный узел' target="c1">
 <i class='fas fa-arrow-right'></i>
     </a>
     {% endif %}

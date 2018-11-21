@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %}Tutor{% endblock %}
+{% block title %}тьютор{% endblock %}
 {% block content %}
 <h3>
 тьютор
@@ -37,7 +37,7 @@
   <ul>
   {% for q in qs_stu %}
   <li>
-    <a href="/kid2book/{{q.id}}/" target="book" title='book and teacher'>
+    <a href="/kid2book/{{q.id}}/" target="book" title='назначение'>
       <i class="fas fa-book-open"></i>
       </a>
 {{q}}

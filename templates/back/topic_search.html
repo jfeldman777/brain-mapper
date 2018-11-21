@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %}Search{% endblock %}
+{% block title %}Поиск по темам{% endblock %}
 {% block content %}
     <h2>
-    {% trans 'Topic search' %}</h2>
+  Поиск по темам</h2>
     <form method="post" action=''>
       {% csrf_token %}
       {{ form }}

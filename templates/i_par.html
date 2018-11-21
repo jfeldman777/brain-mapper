@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %}Parent{% endblock %}
+{% block title %}родитель{% endblock %}
 {% block content %}
 
 <h3>
@@ -9,6 +9,6 @@
 <form method="post" action=''>
   {% csrf_token %}
 {{ form.as_p }}
-  <input type="submit" value="Submit" />
+  <input type="submit" value="Отправить" />
 </form>
 {% endblock %}

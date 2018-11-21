@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %}Subtree{% endblock %}
+{% block title %}Поддерево{% endblock %}
 {% block content %}
-<h3>{% trans 'Subtree' %}</h3>
+<h3>Поддерево</h3>
 {% for item, info, p3 in annotated_list %}
     {% if info.open %}
         <ul><li>

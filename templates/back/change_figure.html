@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}Upload{% endblock %}
+{% block title %}Загрузить картинку{% endblock %}
 {% block content %}
 
 <h2>
-{% trans 'Change figure' %}</h2>
+Изменить (загрузить) картинку</h2>
 <form method="post" action='' enctype="multipart/form-data">
   {% csrf_token %}
 {{ form.as_p }}
-  <input type="submit" value="Submit" />
+  <input type="submit" value="Отправить" />
 </form>
 {% endblock %}

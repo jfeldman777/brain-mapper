@@ -2,7 +2,7 @@
 {% block content %}
   {% if form.errors %}
   <p>
-    Your username and password didn't match. Please try again.
+    Пароль и логин не соответствуют друг другу. Попробуйте еще раз
     </p>
   {% endif %}
 
@@ -13,8 +13,8 @@
       {{ form.password.label_tag }}
       {{ form.password }}
               <button
-        <button type="submit" class="btn btn-primary">
-        LOGIN  
+        <button type="Отправить" class="btn btn-primary">
+    Войти
   </button>
   </form>
 {% endblock %}

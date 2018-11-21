@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}Teacher{% endblock %}
+{% block title %}Учитель{% endblock %}
 {% block content %}
 <h2>Темы и ученики</h2>
 <table class="table">
@@ -20,7 +20,7 @@
 <td>{{b.book}} = {{b.book.id}}</td>
 <td>{{b.updated_at}}</td>
 
-<td><a href="/subtree2/{{b.id}}/{{b.student.id}}/" target="subtree" title='subtree'>
+<td><a href="/subtree2/{{b.id}}/{{b.student.id}}/" target="subtree" title='поддерево'>
 <i class="fas fa-tree"></i>
   <a></td>
 

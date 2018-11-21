@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}Add{% endblock %}
+{% block title %}Добавить узел{% endblock %}
 {% block content %}
 
 {% if user.is_superuser or old_node.owner == user %}
 <h2>
-{% trans 'Create item' %}</h2>
+Создать узел</h2>
 <form method="post" action=''>
   {% csrf_token %}
   {{ form }}
@@ -15,8 +15,8 @@
 {% endif %}
   <input type="submit" value="Submit" />
 </form>
-{% trans 'old node' %}:{{old_node}}
+относительно узла:{{old_node}}
 <br>
-{% trans 'location' %}:{{location}}
+положение нового узла:{{location}}(1-сиблинг выше, 2-сиблинг ниже, 3-потомок)
 {% endif %}
 {% endblock %}

@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}Exam{% endblock %}
+{% block title %}Ответить на вопрос{% endblock %}
 {% block content %}
 
-<h2>Question
+<h2>Вопрос
 </h2>
 <form method="post" action=''>
   {% csrf_token %}
@@ -14,8 +14,8 @@
       <br>
       {% endif %}
                 <br>      <br>      <br>
-<h2>Answer</h2>
+<h2>Ответ</h2>
 {{ form2.as_p }}
-  <input type="submit" value="Submit" />
+  <input type="submit" value="Отправить" />
 </form>
 {% endblock %}
