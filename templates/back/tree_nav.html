@@ -132,18 +132,17 @@
 <a href="{{x}}" target="extlink">{{x}}</a><br>
 {% endfor %}
 {% endif %}
-
-{% endif %}
-
-{% if node.next %}
-<a href="/tree_nav/{{node.next.id}}/">
-<h2>Далее</h2>
-</a>
 {% endif %}
 
 {% if node.has_exam %}
 <a href="/q_list/{{node.id}}/" target="quiz" title="Вопросы и задачи">
 <h2>Вопросы и задачи</h2>
+</a>
+{% endif %}
+
+{% if node.next %}
+<a href="/tree_nav/{{node.next.id}}/">
+<h2>Далее</h2>
 </a>
 {% endif %}
   </div>

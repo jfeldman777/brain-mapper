@@ -14,6 +14,9 @@
   {% else %}
   <i class="fab fa-android" title="закрытая задача"></i>
   {% endif %}
+  {% if not b.is_ready %}
+  <i class='fas fa-cog' title="пока не готово"></i>
+  {% endif %}
 </button>
 <div class="panel">
       {{b.text|linebreaks }}
