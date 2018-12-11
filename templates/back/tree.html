@@ -12,11 +12,7 @@
 <a href="/tree_nav/{{item.id}}/" target="перейти в навигатор">
     {{ item }}
 </a>
-    {% if not item.is_ready %}
 
-      <i class='fas fa-cog' title="пока не готово"></i>
-
-    {% endif %}
     {% if user.is_superuser or item.owner == user %}
     <a href="/add_item/{{item.id}}/1/" title='добавить выше' target="c1">
 <i class='fas fa-arrow-up'></i>

@@ -38,9 +38,6 @@
               <a href="/tree_nav/{{x.id}}/">
             {{x}}
               </a>
-              {% if not x.is_ready %}
-              <i class='fas fa-cog' title="пока не готово"></i>
-              {% endif %}
           </li>
 
         {% else %}
@@ -54,9 +51,6 @@
           {% endif %}
 
           {{x}}
-          {% if not x.is_ready %}
-          <i class='fas fa-cog' title="пока не готово"></i>
-          {% endif %}
 
           {% if user.is_superuser  or x.owner == user  %}
           <a href="/move_item/{{x.id}}/"
@@ -97,9 +91,6 @@
                 <a href="/tree_nav/{{t.id}}/">
                 {{t}}
                 </a>
-                {% if not t.is_ready %}
-                  <i class='fas fa-cog' title="пока не готово"></i>
-                {% endif %}
               </li>
               {% endfor %}
           </ul>
