@@ -50,11 +50,17 @@ class MagicNode(AL_Node):
     figure = models.ImageField(upload_to='uploads/%Y/%m/%d',
                                blank=True,
                                null=True,)
+
+    fig_link = models.URLField(blank=True,null=True,)
+    date1 = models.CharField(max_length=10,blank=True,null=True,)
+    date2 = models.CharField(max_length=10,blank=True,null=True,)
+
     text = models.TextField(
             blank=True)
 
     video = EmbedVideoField(null=True,blank=True)  # same like models.URLField(
 
+    site1 = models.URLField(blank=True,null=True,)
     sites = ArrayField(
             models.TextField(blank=True),
             blank = True,
@@ -65,7 +71,7 @@ class MagicNode(AL_Node):
 
     has_exam = models.BooleanField(default = False)
     book = models.BooleanField(default = False)
-    extra = models.BooleanField(default = False)    
+    extra = models.BooleanField(default = False)
     next = models.ForeignKey('self',blank=True,
                                related_name='far_away',
                                null=True,on_delete=models.SET_NULL)

@@ -175,11 +175,17 @@ class ChangeTxtForm(ModelForm):
     class Meta:
         model = MagicNode
         fields = [
-        'desc', 'text', 'sites',
+        'desc',
+        'date1','date2','fig_link',
+        'text',
+        'site1', 'sites',
         'sib_order', 'video',
         'is_ready','has_exam','book','extra','next']
         widgets = {
             'desc':forms.TextInput(attrs={'size':100,'maxlength':100}),
+            'site1':forms.TextInput(attrs={'size':100,'maxlength':100}),
+            'fig_link':forms.TextInput(attrs={'size':100,'maxlength':100}),
+
             'sites':forms.Textarea(attrs={'cols':100, 'rows':5}),
             'video':forms.TextInput(attrs={'size':100,'maxlength':100}),
             'text':forms.Textarea(attrs={'cols':100, 'rows':10}),

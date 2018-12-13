@@ -18,7 +18,11 @@
     <i class="fas fa-microscope" title="углубленное изучение"></i>
     {% endif %}
 
-      <a href="/tree_nav/{{parent.id}}/">
+      <a href="/tree_nav/{{parent.id}}/"
+      {% if parent.date1 %}
+       title="{{parent.date1}}-{{parent.date2}}"
+       {% endif %}
+       >
     {{ parent }}
       </a>
     <ul>
@@ -35,7 +39,11 @@
             <i class="fas fa-microscope" title="углубленное изучение"></i>
             {% endif %}
 
-              <a href="/tree_nav/{{x.id}}/">
+              <a href="/tree_nav/{{x.id}}/"
+              {% if x.date1 %}
+               title="{{x.date1}}-{{x.date2}}"
+                {% endif %}
+               >
             {{x}}
               </a>
           </li>
@@ -88,7 +96,11 @@
                 <i class="fas fa-microscope" title="углубленное изучение"></i>
                 {% endif %}
 
-                <a href="/tree_nav/{{t.id}}/">
+                <a href="/tree_nav/{{t.id}}/"
+                {% if t.date1 %}
+                 title="{{t.date1}}-{{t.date2}}"
+                 {% endif %}
+                 >
                 {{t}}
                 </a>
               </li>
@@ -102,11 +114,18 @@
 
   <div class="col-sm-8">
     <h2>{{node}} </h2>
-
+    {% if node.date1 %}
+{{node.date1}}-{{node.date2}}<br>
+    {% endif %}
     {% if node.figure and node.figure != 'False'%}<br>
     <img src="{{node.figure.url}}"  />
 <br>
 {% endif %}
+{% if node.fig_link %}<br>
+<img src="{{node.fig_link}}"  />
+<br>
+{% endif %}
+
     {% if node.text %}
     <p>
     {{node.text|linebreaks }}
@@ -116,9 +135,10 @@
     {% if node.video %}
 {% video node.video 'medium' %}
     {% endif %}
-
+{% if node.site1 %}
+<a href="{{node.site1}}" target="extlink">{{node.site1}}</a><br>
+{% endif %}
 {% if node.sites %}
-<h3>Сайты</h3>
 {% for x in node.sites %}
 <a href="{{x}}" target="extlink">{{x}}</a><br>
 {% endfor %}

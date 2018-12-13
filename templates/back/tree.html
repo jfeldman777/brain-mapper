@@ -9,7 +9,11 @@
     {% else %}
         </li><li>
     {% endif %}
-<a href="/tree_nav/{{item.id}}/" target="перейти в навигатор">
+<a href="/tree_nav/{{item.id}}/"
+{% if item.date1 %}
+ title="{{item.date1}}-{{item.date2}}"
+{% endif %} 
+ target="navigator">
     {{ item }}
 </a>
 
