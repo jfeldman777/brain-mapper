@@ -138,6 +138,7 @@ def subtree(request,id):
     annotated_list = MagicNode.get_annotated_list(parent=node)
     return render(request,'tree.html',
                     {'annotated_list':annotated_list,
+                    'count':len(annotated_list)
                      })
 
 def tree(id):
