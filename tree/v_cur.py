@@ -180,7 +180,8 @@ class ChangeTxtForm(ModelForm):
         'date1','date2','fig_link',
         'text',
         'site1', 'sites',
-        'sib_order', 'video',
+        'sib_order',
+         'video','video2','video3',
         'is_ready','has_exam','book','extra','next']
         widgets = {
             'desc':forms.TextInput(attrs={'size':100,'maxlength':100}),
@@ -188,7 +189,11 @@ class ChangeTxtForm(ModelForm):
             'fig_link':forms.TextInput(attrs={'size':100,'maxlength':100}),
 
             'sites':forms.Textarea(attrs={'cols':100, 'rows':5}),
+
             'video':forms.TextInput(attrs={'size':100,'maxlength':100}),
+            'video2':forms.TextInput(attrs={'size':100,'maxlength':100}),
+            'video3':forms.TextInput(attrs={'size':100,'maxlength':100}),
+
             'text':forms.Textarea(attrs={'cols':100, 'rows':10}),
             'next':forms.TextInput(attrs={'type':'number'})
             }
