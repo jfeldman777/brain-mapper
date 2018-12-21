@@ -1,3 +1,4 @@
+{% load static %}
 <div class="jumbotron">
 <a href='/' target="home">Домой</a>
 {% if user.is_superuser %}
@@ -24,4 +25,5 @@
 </div>
 {% endfor %}
 {% endif %}
+<img src="{% static "favicon32.png" %}"/>
 </div>

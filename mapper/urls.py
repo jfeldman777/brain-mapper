@@ -25,6 +25,7 @@ urlpatterns = []
 
 if settings.DEBUG:#в этом режиме медиафайлы берутся из статической папки MEDIA
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += [
     path('kid2parent/', views.kid2parent, name='kid2parent'),

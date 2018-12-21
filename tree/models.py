@@ -58,7 +58,9 @@ class MagicNode(AL_Node):
     text = models.TextField(
             blank=True)
 
-    video = EmbedVideoField(null=True,blank=True)  # same like models.URLField(
+    video = EmbedVideoField(null=True,blank=True)
+    video2 = EmbedVideoField(null=True,blank=True)
+    video3 = EmbedVideoField(null=True,blank=True)  
 
     site1 = models.URLField(blank=True,null=True,)
     sites = ArrayField(
