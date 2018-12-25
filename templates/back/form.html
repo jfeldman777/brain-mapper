@@ -6,6 +6,7 @@
 <h2>{{title}}
 </h2>
 <form method="post" action=''>
+    <input type="submit" value="Отправить" />
   {% csrf_token %}
 {{ form.as_p }}
   <input type="submit" value="Отправить" />

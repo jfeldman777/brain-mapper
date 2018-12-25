@@ -177,11 +177,11 @@ class ChangeTxtForm(ModelForm):
         model = MagicNode
         fields = [
         'desc',
-        'date1','date2','fig_link',
-        'text',
-        'site1', 'sites',
-        'sib_order',
+        'date1','date2',
          'video','video2','video3',
+                'text',
+        'fig_link',
+        'site1', 'sites',
         'is_ready','has_exam','book','extra','next']
         widgets = {
             'desc':forms.TextInput(attrs={'size':100,'maxlength':100}),
