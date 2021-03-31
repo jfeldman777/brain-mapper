@@ -41,7 +41,7 @@ glob2==0.6
 gunicorn==19.7.1
 idna==2.6
 ldif3==3.1.1
-lxml==4.1.1
+lxml==4.6.3
 markdown2==2.3.6
 mistune==0.8.3
 mots-vides==2015.5.11
