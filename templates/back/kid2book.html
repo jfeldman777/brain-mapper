@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}Ученику назначено{% endblock %}
+{% block title %}Ученику назначено=Student's assignment{% endblock %}
 {% block content %}
 <h2>{{kid}}</h2>
 <table class="table">
   <thead>
      <tr>
-       <th>Тема</th>
-       <th>Учитель</th>
-       <th>когда назначено</th>
-        <th>изменить</th>
-         <th>удалить</th>
+       <th>Тема=Subject</th>
+       <th>Учитель=Teacher</th>
+       <th>когда назначено=When</th>
+        <th>изменить=change</th>
+         <th>удалить=delete</th>
      </tr>
    </thead>
    <tbody>
@@ -20,15 +20,15 @@
 <td>{{b.teacher}} = {{b.teacher.id}}</td>
 <td>{{b.updated_at}}</td>
 
-<td><a href="/book_edit/{{b.id}}/" target="edit" title='редактировать'>
+<td><a href="/book_edit/{{b.id}}/" target="edit" title='редактировать=edit'>
   <i class="far fa-edit"></i><a></td>
-<td><a href="/book_del/{{b.id}}/"  title='Удалить'>
+<td><a href="/book_del/{{b.id}}/"  title='Удалить=delete'>
   <i class="fas fa-eraser"></i><a></td>
 
 </tr>
 {% endfor %}
 <tr><td>
-<a href="/book_add/{{kid.id}}/" target='add'>Назначить еще</a>
+<a href="/book_add/{{kid.id}}/" target='add'>Назначить еще=Add more</a>
 </td></tr>
 </tbody>
 </table>
