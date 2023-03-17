@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}Добавить узел{% endblock %}
+{% block title %}Добавить узел=Add node{% endblock %}
 {% block content %}
 
 {% if user.is_superuser or old_node.owner == user %}
@@ -15,8 +15,9 @@
 {% endif %}
   <input type="submit" value="Submit" />
 </form>
-относительно узла:{{old_node}}
+относительно узла:{{old_node}}=from node
 <br>
-положение нового узла:{{location}}(1-сиблинг выше, 2-сиблинг ниже, 3-потомок)
+положение нового узла:{{location}}(1-сиблинг выше, 2-сиблинг ниже, 3-потомок)=
+where: 1=sibling up,2 - sibling down, 3-child 
 {% endif %}
 {% endblock %}

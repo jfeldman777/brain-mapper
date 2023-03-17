@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %}тьютор{% endblock %}
+{% block title %}тьютор = tutor{% endblock %}
 {% block content %}
 <h3>
-тьютор
+тьютор = tutor
 </h3>
   <h2><a href="/register_tut/">
-    Зарегистрировать нового пользователя.</a>
+    Зарегистрировать нового пользователя.= Add new user</a>
   </h2>
 
-<h2>Посмотреть своих. Заполнить профиль. </h2>
+<h2>Посмотреть своих. Заполнить профиль. = Look, Fill</h2>
 
-<button class="accordion"><b>родители</b></button>
+<button class="accordion"><b>родители=parents</b></button>
 <div class="panel">
 <ul>
 {% for q in qs_par %}
@@ -32,7 +32,7 @@
 </ul>
 </div>
 
-<button class="accordion"><b>студенты</b></button>
+<button class="accordion"><b>студенты=students</b></button>
 <div class="panel">
   <ul>
   {% for q in qs_stu %}
@@ -57,12 +57,12 @@
   </ul>
 </div>
 
-<button class="accordion"><b>учителя</b></button>
+<button class="accordion"><b>учителя=teachers</b></button>
 <div class="panel">
   <ul>
   {% for q in qs_tea %}
-  <li>{{q}}|
-  {{ q.get_full_name }}  |{{q.email}}|{{q.profile.birth_date}}
+  <li>{{q}} =
+  {{ q.get_full_name }}=  {{q.email}}
 
   </li>
   {%  endfor %}
@@ -70,7 +70,9 @@
 </div>
 
   <h2><a href="/kid2parent/">
-    Связать родителя и ребенка</a>
+    Связать родителя и ребенка = join parent and child</a>
   </h2>
-
+  <h2><a href="/kid2teacher/">
+    Связать учителя и ребенка = join teacher and child</a>
+  </h2>
 {% endblock %}

@@ -29,6 +29,7 @@ if settings.DEBUG:#в этом режиме медиафайлы берутся 
 
 urlpatterns += [
     path('kid2parent/', views.kid2parent, name='kid2parent'),
+    path('kid2teacher/', views.kid2teacher, name='kid2teacher'),
     path('register_adm/', views.register_adm, name='register_adm'),
     path('register_dir/', views.register_dir, name='register_dir'),
     path('register_tut/', views.register_tut, name='register_tut'),

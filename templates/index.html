@@ -1,47 +1,47 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %}Главная страница{% endblock %}
+{% block title %}Maim Page{% endblock %}
 {% block content %}
 
 <h3>
-Вы кто?
+Вы кто? = Who are you?
 <h3>
 <ul>
 {% if user.is_authenticated %}
 {% if user.is_superuser %}
-          <li><a href="/i_adm/">Администратор</a></li>
+          <li><a href="/i_adm/">Администратор = Admin</a></li>
 {% endif %}
 {% if user.is_superuser or user.profile.role == 'D' %}
-  <li><a href="/i_dir/">Директор</a></li>
+  <li><a href="/i_dir/">Директор = Principal</a></li>
 {% endif %}
 {% if user.is_superuser or user.profile.role == "D" or user.profile.role == "T" %}
-    <li><a href="/i_tut/">Тьютор</a></li>
+    <li><a href="/i_tut/">Тьютор = Tutor</a></li>
 {% endif %}
 {% if user.is_superuser or user.profile.role == "D" or user.profile.role == "W" %}
-  <li><a href="/tree_nav/1/" target="navigator">Автор учебника</a></li>
+  <li><a href="/tree_nav/1/" target="navigator">Автор учебника = Content Writer</a></li>
 {% endif %}
 {% if user.is_superuser or user.profile.role == "D" or user.profile.role == "T" or user.profile.role == "Z" %}
-          <li><a href="/i_tea/">Учитель</a></li>
+          <li><a href="/i_tea/">Учитель = Teacher</a></li>
           {% endif %}
           {% if user.is_superuser or user.profile.role == "P"%}
-      <li><a href="/i_par/">Родитель</a></li>
+      <li><a href="/i_par/">Родитель = Parent</a></li>
       {% endif %}
       {% if user.is_superuser or user.profile.role == "S"%}
-    <li><a href="/i_stu/">Ученик</a></li>
+    <li><a href="/i_stu/">Ученик = Student</a></li>
       {% endif %}
   {% else %}
-          <li><a href="/i_gue/">Гость</a></li>
+          <li><a href="/i_gue/">Гость=Guest</a></li>
 {% endif %}
 </ul>
 {% if user.is_authenticated %}
-<a href="/accounts/logout/" title='выйти из системы' >
+<a href="/accounts/logout/" title='выйти из системы=Lo-out' >
 
-<button style='font-size:24px'> выйти из системы ({{ user }}) <i class='fas fa-sign-out-alt'></i></button>
+<button style='font-size:24px'> log-Out = выйти из системы ({{ user }}) <i class='fas fa-sign-out-alt'></i></button>
 
 </a>
 {% else %}
-<a href="/accounts/login/" title='войти в систему' >
-  <button style='font-size:24px'>  Войти в систему <i class='fas fa-sign-in-alt'></i></button>
+<a href="/accounts/login/" title='войти в систему=Log-in' >
+  <button style='font-size:24px'>  Войти в систему = Log-in<i class='fas fa-sign-in-alt'></i></button>
 </a>
 {% endif %}
 {% endblock %}

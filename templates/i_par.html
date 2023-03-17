@@ -4,11 +4,11 @@
 {% block content %}
 
 <h3>
-родитель
+родитель=parent
 </h3>
 <form method="post" action=''>
   {% csrf_token %}
 {{ form.as_p }}
-  <input type="submit" value="Отправить" />
+  <input type="submit" value="Отправить/Send" />
 </form>
 {% endblock %}

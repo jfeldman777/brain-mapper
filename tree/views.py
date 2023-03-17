@@ -91,7 +91,19 @@ def index(request):
 def tree_nav(request,id=1):
     d = tree(id)
     return render(request,'tree_nav.html',d)
+class Kid2TeacherForm(forms.Form):
+    teacher = forms.ChoiceField()
+    kid = forms.ChoiceField()
 
+    def __init__(self, *args, **kwargs):
+       master = kwargs.pop('master')
+       super(Kid2TeacherForm, self).__init__(*args, **kwargs)
+       self.fields['kid'] = forms.ModelChoiceField(
+            queryset=User.objects.filter(
+                     profile__master=master,profile__role='S'))
+       self.fields['teacher'] = forms.ModelChoiceField(
+            queryset=User.objects.filter(
+                     profile__master=master,profile__role='Z'))
 class Kid2ParentForm(forms.Form):
     parent = forms.ChoiceField()
     kid = forms.ChoiceField()
@@ -112,6 +124,16 @@ def kid2parent(request):
         u = form.cleaned_data['kid']
         profile = Profile.objects.get(user=u)
         profile.parent = form.cleaned_data['parent']
+        profile.save()
+        return msg(request,'done')
+    return render(request,'form.html', {'form':form})
+
+def kid2teacher(request):
+    form = Kid2TeacherForm(request.POST or None, master=request.user)
+    if form.is_valid():
+        u = form.cleaned_data['kid']
+        profile = Profile.objects.get(user=u)
+        profile.teacher = form.cleaned_data['teacher']
         profile.save()
         return msg(request,'done')
     return render(request,'form.html', {'form':form})
@@ -173,17 +195,17 @@ def i_adm(request):
     return render(request,'i_adm.html')
 
 TUT_ROLES = [
-    ('P','Родитель'),
-    ('S','Ученик'),
+    ('P','Родитель=Parent'),
+    ('S','Ученик=Student'),
 ]
 
 DIR_ROLES = [
-    ('T','Тьютор'),
-    ('Z','Учитель'),
-    ('W','Автор учебника'),
+    ('T','Тьютор=Tutor'),
+    ('Z','Учитель=Teacher'),
+    ('W','Автор учебника=Content Writer'),
 ]
 
-ADM_ROLES = DIR_ROLES + TUT_ROLES + [('D','Директор')]
+ADM_ROLES = DIR_ROLES + TUT_ROLES + [('D','Директор=Principal')]
 
 class ProfileForm1(forms.ModelForm):
     class Meta:
@@ -191,7 +213,7 @@ class ProfileForm1(forms.ModelForm):
         fields = ['role']
     def __init__(self, *args, **kwargs):
        type = kwargs.pop('type')
-       super(ProfileForm, self).__init__(*args, **kwargs)
+       super(ProfileForm1, self).__init__(*args, **kwargs)
        if type == 'A':
            ch = ADM_ROLES
        elif type == 'D':

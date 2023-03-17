@@ -1,21 +1,25 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load embed_video_tags %}
-{% block title %}Навигатор{% endblock %}
+{% block title %}Навигатор=Navigator{% endblock %}
 {% block content %}
 
 <div class="row">
   <div class="col-sm-4">
-    <a href="/subtree/{{node.id}}/" target="subtree">Поддерево</a>
-    <h2>Навигатор</h2>
+        {% if node and node.id %}
+    <a href="/subtree/{{node.id}}/" target="subtree">Поддерево=Subtree</a>
+    {% else %}
+      <a href="/subtree/0/" target="subtree">дерево=Tree</a>
+      {% endif %}
+    <h2>Навигатор=Navigator</h2>
     {% if parent %}
 
     {% if parent.book %}
-      <i class='fas fa-book' title="учебник"></i>
+      <i class='fas fa-book' title="учебник=book"></i>
     {% endif %}
 
     {% if parent.extra %}
-    <i class="fas fa-microscope" title="углубленное изучение"></i>
+    <i class="fas fa-microscope" title="углубленное изучение=deep learning"></i>
     {% endif %}
 
       <a href="/tree_nav/{{parent.id}}/"
@@ -32,11 +36,11 @@
         {% if x != node %}
           <li>
             {% if x.book %}
-              <i class='fas fa-book' title="учебник"></i>
+              <i class='fas fa-book' title="учебни=book"></i>
             {% endif %}
 
             {% if x.extra %}
-            <i class="fas fa-microscope" title="углубленное изучение"></i>
+            <i class="fas fa-microscope" title="углубленное изучение=deep learning"></i>
             {% endif %}
 
               <a href="/tree_nav/{{x.id}}/"
@@ -51,36 +55,36 @@
         {% else %}
         <li>
           {% if x.book %}
-            <i class='fas fa-book' title="учебник"></i>
+            <i class='fas fa-book' title="учебник=book"></i>
           {% endif %}
 
           {% if x.extra %}
-          <i class="fas fa-microscope" title="углубленное изучение"></i>
+          <i class="fas fa-microscope" title="углубленное изучение=deep learning"></i>
           {% endif %}
 
           {{x}}
 
           {% if user.is_superuser  or x.owner == user  %}
           <a href="/move_item/{{x.id}}/"
-          title='передвинуть узел' target="a1">
+          title='передвинуть узел=move node' target="a1">
 
 <i class='fas fa-plane'></i>
           </a>
 
           <a href="/change_figure/{{x.id}}/"
-          title='изменить картинку' target="a1">
+          title='изменить картинку=change picture]' target="a1">
 
 <i class='far fa-image'></i>
 
           </a>
           <a href="/change_txt/{{x.id}}/"
-          title='редактировать текст' target="a1">
+          title='редактировать текст=edit' target="a1">
 
 <i class='far fa-edit'></i>
 
           </a>
 {% if node.has_exam %}
-<a href="/q_list/{{x.id}}/" target="quiz" title="смотреть вопросы и задачи">
+<a href="/q_list/{{x.id}}/" target="quiz" title="смотреть вопросы и задачи=look at tasks">
 <i class='far fa-question-circle'></i>
 </a>
 {% endif %}
@@ -89,11 +93,11 @@
             {% for t in children %}
               <li>
                 {% if t.book %}
-                  <i class='fas fa-book' title="учебник"></i>
+                  <i class='fas fa-book' title="учебник=book"></i>
                 {% endif %}
 
                 {% if t.extra %}
-                <i class="fas fa-microscope" title="углубленное изучение"></i>
+                <i class="fas fa-microscope" title="углубленное изучение=deep learning"></i>
                 {% endif %}
 
                 <a href="/tree_nav/{{t.id}}/"
@@ -156,7 +160,7 @@
 {% endif %}
 
 {% if node.has_exam %}
-<a href="/q_list/{{node.id}}/" target="quiz" title="Вопросы и задачи">
+<a href="/q_list/{{node.id}}/" target="quiz" title="Вопросы и задачи=Tasks">
 <h2>Вопросы и задачи</h2>
 </a>
 {% endif %}

@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}Родителю о детях{% endblock %}
+{% block title %}Родителю о детях=For parents about children {% endblock %}
 {% block content %}
 <h2>{{kid}}</h2>
 <table class="table">
   <thead>
      <tr>
-       <th>Тема</th>
-       <th>Учитель</th>
-       <th>когда назначено</th>
+       <th>Тема=Subject</th>
+       <th>Учитель=Teacher</th>
+       <th>когда назначено=When</th>
         <th>tree</th>
 
      </tr>
@@ -20,7 +20,7 @@
 <td>{{b.teacher}} = {{b.teacher.id}}</td>
 <td>{{b.updated_at}}</td>
 
-<td><a href="/subtree2/{{b.id}}/{{kid.id}}/" target="subtree" title='Поддерево'>
+<td><a href="/subtree2/{{b.id}}/{{kid.id}}/" target="subtree" title='Поддерево=subtree'>
 <i class="fas fa-tree"></i>
   <a></td>
 

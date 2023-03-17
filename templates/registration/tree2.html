@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %}Поддерево{% endblock %}
+{% block title %}Поддерево=subtree{% endblock %}
 {% block content %}
-<h3>Поддерево</h3>
+<h3>Поддерево=subtree</h3>
 {% for item, info, p3 in annotated_list %}
     {% if info.open %}
         <ul><li>
@@ -16,36 +16,36 @@
     {% for help_count,correct_count,wrong_count,open_count,open,close in p3 %}
 
           {% if open %}
-      <i class="fas fa-dove" title="открытых задач {{ open }}" ></i>
+      <i class="fas fa-dove" title="open tasks=открытых задач {{ open }}" ></i>
       {% endif %}
 
       {% if close %}
-      <i class="fab fa-android" title="закрытых задач {{ close }}" ></i>
+      <i class="fab fa-android" title="closed tasks=закрытых задач {{ close }}" ></i>
       {% endif %}
 
       {% if open_count %}
           <a href="/q_list2/{{kid.id}}/{{item.id}}/open_count/" target="q_list">
-      <i class="fas fa-atom" title="открытых ответов {{ open_count }}" ></i>
+      <i class="fas fa-atom" title="open answers=открытых ответов {{ open_count }}" ></i>
       </a>
       {% endif %}
 
 
       {% if correct_count %}
           <a href="/q_list2/{{kid.id}}/{{item.id}}/correct_count/" target="q_list">
-      <i class="fab fa-angellist" title="верных ответов {{ correct_count }}" ></i>
+      <i class="fab fa-angellist" title="correct=верных ответов {{ correct_count }}" ></i>
       </a>
       {% endif %}
 
 
       {% if wrong_count %}
           <a href="/q_list2/{{kid.id}}/{{item.id}}/wrong_count/" target="q_list">
-      <i class="far fa-angry" title="неверных ответов {{ wrong_count }}" ></i>
+      <i class="far fa-angry" title="wrong=неверных ответов {{ wrong_count }}" ></i>
         </a>
       {% endif %}
 
       {% if help_count %}
           <a href="/q_list2/{{kid.id}}/{{item.id}}/help_count/" target="q_list">
-      <i class="fas fa-bolt" title="криков о помощи {{ help_count }}" ></i>
+      <i class="fas fa-bolt" title="help!=криков о помощи {{ help_count }}" ></i>
         </a>
       {% endif %}
 

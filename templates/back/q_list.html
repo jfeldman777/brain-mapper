@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %}Вопросы и задачи{% endblock %}
+{% block title %}Вопросы и задачи=Tasks and questions{% endblock %}
 {% block content %}
 <h1>
-Вопросы и задачи
+Вопросы и задачи=Tasks and questions
 </h1>
 {% if boats %}
 
 {% for b in boats %}
 <button class="accordion"><b>{{b.number}}) {{b.desc}}</b>
   {% if b.is_open %}
-  <i class="fas fa-dove" title="открытая задача"></i>
+  <i class="fas fa-dove" title="открытая задача=open question"></i>
   {% else %}
-  <i class="fab fa-android" title="закрытая задача"></i>
+  <i class="fab fa-android" title="закрытая задача= closed question"></i>
   {% endif %}
   {% if not b.is_ready %}
-  <i class='fas fa-cog' title="пока не готово"></i>
+  <i class='fas fa-cog' title="пока не готово=not ready yet"></i>
   {% endif %}
 </button>
 <div class="panel">
@@ -29,10 +29,10 @@
 <hr>
 {% if user.is_superuser or node.owner == user %}
 <a href="/q_delete/{{b.id}}/" title="удалить" target="more3"
-onclick="return confirm('Удаляем? Вы уверены?') ? true : false;"
+onclick="return confirm('Удаляем? Вы уверены?=Are you sure? Delete?') ? true : false;"
 >         <i class='fas fa-trash-alt'></i>       </a>
 ={{b.answer}}=
-       <a href="/q_edit/{{b.id}}/" title="редактировать" target="more3">
+       <a href="/q_edit/{{b.id}}/" title="редактировать=edit" target="more3">
 <i class='far fa-edit'></i></a>
               <a href="/q_figure/{{b.id}}/"
               title='edit figure' target="a1">

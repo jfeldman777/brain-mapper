@@ -4,12 +4,12 @@
 {% block content %}
 
 <h3>
-Наши сотрудники
+Наши сотрудники = Staff
 </h3>
 {% for q in qs %}
 <button class="accordion"><b>{{q}}</b></button>
 <div class="panel">
-фотография, биография, контакты
+фотография, биография, контакты = photo, bio, contacts
 </div>
 {% endfor %}
 {% endblock %}
