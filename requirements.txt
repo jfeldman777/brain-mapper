@@ -42,7 +42,7 @@ gunicorn==19.7.1
 idna==2.6
 ldif3==3.1.1
 lxml==4.1.1
-markdown2==2.3.6
+markdown2==2.4.0
 mistune==0.8.3
 mots-vides==2015.5.11
 oauthlib==2.0.6
